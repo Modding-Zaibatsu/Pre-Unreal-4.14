@@ -1,0 +1,25 @@
+﻿INTSourceChangelist:3106123
+title:HLOD システムを有効にする方法
+description:UE4 プロジェクトで HLOD システムを有効にする方法について説明します。
+crumbs:
+availability:docs
+version:4.13
+related:Engine/HLOD/Overview
+related:Engine/HLOD/Reference
+
+**HLOD (Hierarchical Level of Detail System)** は、この機能を使用したい各レベルで有効にしなければなりません。HLOD システムを有効にするには以下の手順に従います。
+
+## ステップ
+
+1. **World Settings -> LODSystem -> Enable Hierarchical LODSystem** の順序で選択して有効にします。
+
+	[REGION:raw]
+	![image alt text](Engine/HLOD/Overview/image_0.png)
+	[/REGION]
+
+1. 有効になったら、**Main Menu -> Window -> Hierarchical LOD Outliner** の順序で進んで、シーンに対して HLOD がどのように生成されるかについてセットアップすることができます。
+
+	[REGION:raw]
+	![image alt text](Engine/HLOD/Overview/image_1.png)
+	[/REGION]
+

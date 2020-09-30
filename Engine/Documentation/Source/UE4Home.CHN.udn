@@ -1,0 +1,84 @@
+﻿INTSourceChangelist:2951778
+Availability:Public
+Title: 虚幻引擎 4 文档
+Crumbs:
+Description: 虚幻引擎 4 的顶层链接文档
+Navigation:home
+social-image:home_social.png
+
+[PUBLISH:Rocket]
+## 搜索
+
+[REGION:frontpage]
+	[OBJECT:SearchBox]
+		[PARAM:path]
+		[RELATIVE:Search]
+		[/PARAM]
+		[PARAMLITERAL:placeholder]
+		需要帮助吗？可以通过搜索文档来查找主题。
+		[/PARAMLITERAL]
+		[PARAM:message]
+		[/PARAM]
+		[PARAMLITERAL:label]
+			快速搜索主题:
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			快速入门
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			指引
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			C++
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			蓝图
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			iOS
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			安卓
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			Actor
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			组件
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			材质
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			光照
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			摄像机
+		[/PARAMLITERAL]
+		[PARAMLITERAL:terms]
+			UMG
+		[/PARAMLITERAL]
+	[/OBJECT]
+[/REGION]
+
+## 按主题浏览
+
+[/PUBLISH:Rocket]
+
+[DIR(end:"1" output:"role" org:"hierarchy" parent:"%ROOT%")]
+
+<!--
+[REGION:frontpage]
+	[REGION:features third]
+	%GettingStarted:role%
+	%Engine/Editor:role%
+	%Engine:role%
+	%Programming:topicrole%
+	%Engine/Blueprints:role%
+	%Gameplay:role%
+	%Resources:role%
+	%Platforms:role%
+	%Support/Builds:role%
+	[/REGION]
+[/REGION]
+-->

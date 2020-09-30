@@ -1,0 +1,17 @@
+Availability:Public
+Title: Localization
+Crumbs:%ROOT%, Gameplay
+Description:Information about how to localize your project.
+Related: Programming/UnrealArchitecture/StringHandling/FText
+version: 4.9
+
+
+## Localizing Text
+[DIR(output:"listbutton" parent:"Gameplay/Localization")]
+
+
+
+[REGION:tip]
+Asset localization will be coming in the future just before proper audio localization support. 
+The implementation will revolve around swapping out the entire uasset package with locale specific versions. 
+[/REGION:tip]

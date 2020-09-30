@@ -1,0 +1,25 @@
+﻿INTSourceChangelist:3106123
+title:HLOD （Hierarchical Level of Detail）
+Description:UE4 のHLOD システムのランディング ページです。
+crumbs:
+availability:docs
+version:4.13
+
+**Hierarchical Level of Detail (HLOD)** メッシュは、アンリアル エンジン 4.11 以降を使うプロジェクトの、パフォーマンスを高め、クオリティを高く保つために開発されてきました。HLOD は、表示距離が遠い場合に複数の **Static Mesh アクタ** を、結合された単一の **Static Mesh アクタ** に置き換えることができます。HLOD を使うと、シーンに対してレンダリングする必要がある **アクタ** 数を減らし、1 フレームあたりのドローコール数を少なくしてパフォーマンスを高めることができます。 
+
+[OBJECT:TopicButtonList]
+	[PARAM:icon]
+		![](%ROOT%/tech_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+		HLOD Topics
+	[/PARAM]
+	[PARAM:description]
+	[/PARAM]
+	[PARAM:links]
+	* [](Engine/HLOD/Overview "%Engine/HLOD/Overview:description%")
+	* [](Engine/HLOD/Reference "%Engine/HLOD/Reference:description%")
+	* [](Engine/HLOD/HowTo "%Engine/HLOD/HowTo:description%")
+	[/PARAM]
+[/OBJECT]
+

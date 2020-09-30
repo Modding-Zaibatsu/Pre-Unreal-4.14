@@ -1,0 +1,333 @@
+// Copyright 1998-2016 Epic Games, Inc. All Rights Reserved.
+
+
+#include "Common.usf"
+#include "GammaCorrectionCommon.usf"
+#include "SlateShaderCommon.usf"
+
+
+/** Enable to debug clipping issues */
+#define DEBUG_CLIPPING 0
+
+#define DO_CLIPPING SHADER_TYPE != ST_Custom
+
+/** Display gamma x:gamma curve adjustment, y:inverse gamma (1/GEngine->DisplayGamma) */
+float2 GammaValues;
+/** Per element params */
+float4 ShaderParams;
+
+/** Texture for the element */
+Texture2D ElementTexture;
+SamplerState ElementTextureSampler;
+
+float3 GammaCorrect(float3 InColor)
+{
+	float3 CorrectedColor = InColor;
+
+#if (!(ES2_PROFILE || ES3_1_PROFILE)) || USE_MATERIALS
+	FLATTEN if( GammaValues.y != 1.0f )
+	{
+		CorrectedColor = ApplyGammaCorrection(CorrectedColor, GammaValues.x);
+	}
+#endif
+
+	return CorrectedColor;
+}
+
+
+#if USE_MATERIALS
+void FillTexCoords( inout FMaterialPixelParameters Parameters, VertexToPixelInterpolants InVertex, float2 InDefaultUV )
+{
+#if SHADER_TYPE == ST_Font
+	#if NUM_MATERIAL_TEXCOORDS == 1
+		// Note: The first channel is used to look up into the texture atlas. The second channel is the custom 0-1 UV set for the text run
+		Parameters.TexCoords[0] = GetUV( InVertex, 1 );
+	#elif NUM_MATERIAL_TEXCOORDS == 2
+		// Note: The first channel is used to look up into the texture atlas. The second channel is the custom 0-1 UV set for the text run
+		Parameters.TexCoords[0] = GetUV( InVertex, 1 );
+		Parameters.TexCoords[1] = InVertex.MaterialTexCoords;
+	#endif
+#elif (SHADER_TYPE == ST_Custom || NUM_CUSTOMIZED_UVS != 0) && NUM_MATERIAL_TEXCOORDS > 0
+	// note: We assume users who customize UVs or are using completely custom elements know what they are doing with UVs and want no assumptions made about how uvs are used
+	UNROLL
+	for( int CoordinateIndex = 0; CoordinateIndex < NUM_MATERIAL_TEXCOORDS; CoordinateIndex++ )
+	{
+		Parameters.TexCoords[CoordinateIndex] = GetUV( InVertex, CoordinateIndex );
+	}
+#else
+	#if NUM_MATERIAL_TEXCOORDS == 1
+		Parameters.TexCoords[0] = InDefaultUV;
+	#elif NUM_MATERIAL_TEXCOORDS == 2
+		Parameters.TexCoords[0] = InDefaultUV;
+		Parameters.TexCoords[1] = GetUV( InVertex, 0 );
+	#elif NUM_MATERIAL_TEXCOORDS == 3
+		Parameters.TexCoords[0] = InDefaultUV;
+		Parameters.TexCoords[1] = GetUV( InVertex, 0 );
+		Parameters.TexCoords[2] = GetUV( InVertex, 1 );
+	#elif NUM_MATERIAL_TEXCOORDS >= 4
+		Parameters.TexCoords[0] = InDefaultUV;
+		Parameters.TexCoords[1] = GetUV( InVertex, 0 );
+		Parameters.TexCoords[2] = GetUV( InVertex, 1 );
+		UNROLL
+		for( int CoordinateIndex = 3; CoordinateIndex < NUM_MATERIAL_TEXCOORDS; CoordinateIndex++ )
+		{
+			Parameters.TexCoords[CoordinateIndex] = GetUV( InVertex, CoordinateIndex );
+		}
+	#endif // NUM_MATERIAL_TEXCOORDS == 1
+#endif	// SHADER_TYPE
+}
+
+float4 GetMaterialColor( VertexToPixelInterpolants InVertex, float2 MeshUV )
+{
+	ResolvedView = ResolveView();
+	FMaterialPixelParameters Parameters = MakeInitializedMaterialPixelParameters();
+
+	// Inputs might require texcoords, so fill them in first
+	FillTexCoords( Parameters, InVertex, MeshUV );
+
+	Parameters.VertexColor = InVertex.Color;
+
+   
+	FPixelMaterialInputs PixelMaterialInputs;
+	CalcMaterialParameters( Parameters, PixelMaterialInputs, InVertex.Position, true );
+
+	// Clip if masked
+	GetMaterialCoverageAndClipping( Parameters, PixelMaterialInputs );
+	
+	float Opacity = GetMaterialOpacity(PixelMaterialInputs);
+	float3 Color = GetMaterialEmissive(PixelMaterialInputs);
+
+	float4 OutColor;
+
+	#if MATERIALBLENDING_ADDITIVE
+		OutColor = float4( Color * Opacity, 0.0f );
+	#else
+		OutColor = float4( Color, Opacity );
+	#endif
+
+	return OutColor;
+}
+#endif
+
+#if !USE_MATERIALS
+float4 GetTextureColor( VertexToPixelInterpolants InVertex, float2 UV )
+{
+	float4 BaseColor = Texture2DSample(ElementTexture, ElementTextureSampler, UV );
+#if !USE_TEXTURE_ALPHA
+	BaseColor.a = 1.0f;
+#endif
+
+	return BaseColor;
+}
+#endif
+
+/** Gets a color from a texture and supplied vertex color.  Adjusting for tint masking if necessary */
+float4 GetColor( VertexToPixelInterpolants InVertex, float2 UV )
+{
+	float4 FinalColor;
+	
+#if USE_MATERIALS
+	float4 BaseColor = GetMaterialColor( InVertex, UV );
+#else
+	float4 BaseColor = GetTextureColor( InVertex, UV );
+#endif
+
+#if SHADER_TYPE == ST_Custom
+	// Make no assumptionn of what vertex color does in a custom material shader
+	FinalColor = BaseColor;
+#else
+	FinalColor = BaseColor*InVertex.Color;
+#endif
+
+	return FinalColor;
+}
+
+#if SHADER_TYPE == ST_Font
+float4 GetFontElementColor( VertexToPixelInterpolants InVertex )
+{
+	float2 AtlasTextureCoordinates = GetUV( InVertex, 0 );
+#if USE_MATERIALS
+	float4 BaseColor = GetMaterialColor( InVertex, float2(0,0) )*InVertex.Color;
+#else
+	float4 BaseColor = InVertex.Color;
+#endif
+	float4 OutColor = BaseColor;
+
+	OutColor.a *= Texture2DSample_A8( ElementTexture, ElementTextureSampler, AtlasTextureCoordinates );
+
+	return OutColor;
+}
+#endif
+
+#if SHADER_TYPE == ST_Default || SHADER_TYPE == ST_Custom
+float4 GetDefaultElementColor( VertexToPixelInterpolants InVertex )
+{
+	return GetColor( InVertex, GetUV( InVertex, 0) * GetUV( InVertex, 1 ) );
+}
+#endif
+
+#if SHADER_TYPE == ST_Border 
+float4 GetBorderElementColor( VertexToPixelInterpolants InVertex )
+{
+	float4 TextureCoordinates = InVertex.TextureCoordinates[0];
+	float2 NewUV;
+	if( TextureCoordinates.z == 0.0f && TextureCoordinates.w == 0.0f )
+	{
+		NewUV = TextureCoordinates.xy;
+	}
+	else
+	{
+		float2 MinUV;
+		float2 MaxUV;
+	
+		if( TextureCoordinates.z > 0 )
+		{
+			MinUV = float2(ShaderParams.x,0);
+			MaxUV = float2(ShaderParams.y,1);
+			TextureCoordinates.w = 1.0f;
+		}
+		else
+		{
+			MinUV = float2(0,ShaderParams.z);
+			MaxUV = float2(1,ShaderParams.w);
+			TextureCoordinates.z = 1.0f;
+		}
+
+		NewUV = TextureCoordinates.xy*TextureCoordinates.zw;
+		NewUV = frac(NewUV);
+		NewUV = lerp(MinUV,MaxUV,NewUV);	
+	}
+
+	return GetColor( InVertex, NewUV );
+}
+#endif
+
+#if SHADER_TYPE == ST_LineSegment 
+/** 
+ * Generates an anti-aliased line segment pixel
+ * The idea for the anti-alising technique is based on the fast prefiltered lines technique published in GPU Gems 2 
+ */
+float4 GetLineSegmentElementColor( VertexToPixelInterpolants InVertex )
+{
+	float Width = ShaderParams.x;
+	float Radius = ShaderParams.y;
+
+	float2 StartPos = GetUV( InVertex, 0 );
+	float2 EndPos = GetUV( InVertex, 1 );
+
+	float2 Diff = float2( StartPos.y - EndPos.y, EndPos.x - StartPos.x ) ;
+
+	float K = 2/( (2*Radius + Width)*sqrt( dot( Diff, Diff) ) );
+
+	// Generate two edge functions that will be used to determine the distance we are from the actual line segment. 
+	// The number of pixels generated for the actual line is larger than what will be displayed on screen.  We use the extra pixels
+	// to fade out the line over distance.
+	float3 E0 = K*float3( StartPos.y - EndPos.y, EndPos.x - StartPos.x, (StartPos.x*EndPos.y - EndPos.x*StartPos.y) );
+	E0.z += 1;
+
+	float3 E1 = K*float3( EndPos.y - StartPos.y, StartPos.x - EndPos.x, (EndPos.x*StartPos.y - StartPos.x*EndPos.y) );
+	E1.z += 1;
+
+	// this algorithm requires the original position passed into the VS, not the transformed position output by the VS
+	float3 Pos = float3(InVertex.OriginalPosition.xy,1);
+
+	// Compute the distance this pixel is away from the actual line
+	float2 Distance = float2( dot(E0,Pos), dot(E1,Pos) );
+
+	// A value of zero for distance means the pixel is greater than w/2 + filter radius away from the line 
+	// and should be discarded
+	if( any( Distance < 0 ) )
+	{
+		// using discard instead of clip because
+		// apparently clipped pixels are written into the stencil buffer but discards are not
+		discard;
+	}
+
+	float4 Color = InVertex.Color;
+	
+	// Use the shortest distance to the edge
+	float Index = min(Distance.x,Distance.y);
+
+	// Without this, the texture sample sometimes samples the next entry in the table.  Usually occurs when sampling the last entry in the table but instead	
+	// samples the first and we get white pixels 
+	const float HalfPixelOffset = 1/32.f;
+
+	Color.a *= smoothstep(0.3, 1.0f, Index);
+	
+	// Simple alpha test to help with overlapping segments
+	if( Color.a < 0.05f )
+	{
+		discard;
+	}
+
+	return Color;
+} 
+#endif
+
+float4 Main( VertexToPixelInterpolants VIn ) : SV_Target0
+{
+#if DO_CLIPPING
+		// Clip pixels which are outside of the clipping rect
+		float2 ClipOrigin = VIn.ClipOriginAndPos.xy;
+		float2 WindowPos = VIn.ClipOriginAndPos.zw;
+		float4 ClipTest = PointInParallelogram(WindowPos, ClipOrigin, VIn.ClipExtents);
+	
+	#if !DEBUG_CLIPPING
+		// Clip pixels which are outside of the clipping rect
+		clip(ClipTest);
+	#endif
+#endif
+
+	float4 OutColor;
+#if SHADER_TYPE == ST_Default || SHADER_TYPE == ST_Custom
+	OutColor = GetDefaultElementColor( VIn );
+#elif SHADER_TYPE == ST_Border
+	OutColor = GetBorderElementColor( VIn );
+#elif SHADER_TYPE == ST_Font
+	OutColor = GetFontElementColor( VIn );
+#else
+	OutColor = GetLineSegmentElementColor( VIn );
+#endif
+
+#if DRAW_DISABLED_EFFECT
+	//desaturate
+	float3 LumCoeffs = float3( 0.3, 0.59, .11 );
+	float Lum = dot( LumCoeffs, OutColor.rgb );
+	OutColor.rgb = lerp( OutColor.rgb, float3(Lum,Lum,Lum), .8 );
+	
+	float3 Grayish = {.1, .1, .1};
+
+	OutColor.rgb = lerp( OutColor.rgb, Grayish, clamp( distance( OutColor.rgb, Grayish ), 0, .8)  );
+#endif
+
+#if !USE_MATERIALS
+	OutColor = ApplyColorVisionDeficiencyFilter(OutColor);
+#endif
+
+	// gamma correct
+	OutColor.rgb = GammaCorrect(OutColor.rgb);
+
+#if DEBUG_CLIPPING
+	if (any(ClipTest < 0))
+	{
+		// Shows red where any pixels discarded because part of the element was clipped
+		OutColor *= float4(1,0,0,1);
+	}
+#endif
+
+	return OutColor;
+}
+
+float4 DebugOverdrawMain( VertexToPixelInterpolants VIn ) : SV_Target0
+{
+
+#if !DEBUG_CLIPPING
+	// Clip pixels which are outside of the clipping rect
+	float2 ClipOrigin = VIn.ClipOriginAndPos.xy;
+	float2 WindowPos = VIn.ClipOriginAndPos.zw;
+	float4 ClipTest = PointInParallelogram(WindowPos, ClipOrigin, VIn.ClipExtents);
+	clip(ClipTest);
+#endif
+
+	return .1;
+}

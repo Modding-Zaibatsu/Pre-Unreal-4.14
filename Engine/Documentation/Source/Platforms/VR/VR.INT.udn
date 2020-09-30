@@ -1,0 +1,67 @@
+Availability:Public
+Title:Virtual Reality Development
+Crumbs:%ROOT%, Platforms
+Description:Information over developing for virtual reality platforms.
+Navigation:platform
+Version: 4.9
+type:landing
+parent:Platforms
+order:2
+
+[VAR:Params]
+[PARAM:image]
+	![%Platforms/VR:title%](%ROOT%/placeholder_topic.png)
+[/PARAM]
+[PARAM:icon]
+	![](%ROOT%/platform_icon.png)(convert:false)
+[/PARAM]
+[PARAM:title]
+	%Platforms/VR:title%
+[/PARAM]
+[PARAM:description]
+	%Platforms/VR:description%
+[/PARAM]
+[PARAM:path]
+	[RELATIVE:Platforms/VR]
+[/PARAM]
+[/VAR]
+
+[VAR:Topic]
+[OBJECT:Topic]
+%params%
+[/OBJECT]
+[/VAR]
+
+[VAR:TopicCompact]
+[OBJECT:TopicCompact]
+%params%
+[/OBJECT]
+[/VAR]
+
+[VAR:Role]
+[OBJECT:Role]
+%params%
+[PARAMLITERAL:id]
+vr
+[/PARAMLITERAL]
+[/OBJECT]
+[/VAR]
+
+
+## Starting Out
+
+[DIR(output:"listbutton" type:"quickstart" tags:"vr")]
+
+## Virtual Reality Platforms
+
+[DIR(end:"1" output:"listbutton" type:"landing" parent:"Platforms/VR")]
+
+## Virtual Reality Topics
+
+[DIR(end:"1" output:"listbutton" type:"overview" parent:"Platforms/VR")]
+
+## Training Streams
+
+[REGION:topics third]
+[DIR(output:"video" type:"video" tags:"Virtual Reality")]
+[/REGION]

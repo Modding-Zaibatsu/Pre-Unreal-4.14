@@ -1,0 +1,30 @@
+﻿INTSourceChangelist:2666533
+Availability:Public
+Title:ペルソナのデバッグ
+Crumbs: %ROOT%, Engine, Engine/Animation, Engine/Animation/Persona
+Description:ペルソナのアニメーション エディタのアセット ブラウザのユーザーガイド
+version:4.9
+
+[VAR:Topic]
+[OBJECT:Topic]
+	[PARAM:image]
+		![%Engine/Animation/Persona/AssetBrowser:title%](Engine/Animation/animation_topic.png)
+	[/PARAM]
+	[PARAM:icon]
+		![](%ROOT%/content_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+		%Engine/Animation/Persona/AssetBrowser:title%
+	[/PARAM]
+	[PARAM:description]
+		%Engine/Animation/Persona/AssetBrowser:description%
+	[/PARAM]
+	[PARAM:path]
+		[RELATIVE:Engine/Animation/Persona/AssetBrowser]
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+
+**[Debug (デバッグ)]** パネルには、ブレークポイントとウォッチ値、および実行されたブループリントに属するすべてのノードのスタックのトレース (追跡) という形でデザイナーが重要とみなした情報が表示されます。このパネルには、ブレークポイント使用時のゲームの実行をコントロールするための制御が表示されます。
+
+ペルソナの [Debug] パネルは、ブループリント エディタにあるパネルと同じです。このパネルの使用方法に関する詳しい情報は、[](Engine/Blueprints/UserGuide/Debugging) のページをご覧ください。

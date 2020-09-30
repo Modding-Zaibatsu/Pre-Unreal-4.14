@@ -1,0 +1,42 @@
+﻿INTSourceChangelist:2664810
+Availability:Public
+Title:ペルソナのアセット ブラウザ
+Crumbs:%ROOT%, Engine, Engine/Animation, Engine/Animation/Persona
+Description:ペルソナ アニメーション エディタのアセット ブラウザのユーザーガイド
+バージョン：4.9
+
+[VAR:Topic]
+[OBJECT:Topic]
+	[PARAM:image]
+		![%Engine/Animation/Persona/AssetBrowser:title%](Engine/Animation/animation_topic.png)
+	[/PARAM]
+	[PARAM:icon]
+		![](%ROOT%/content_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+		%Engine/Animation/Persona/AssetBrowser:title%
+	[/PARAM]
+	[PARAM:description]
+		%Engine/Animation/Persona/AssetBrowser:description%
+	[/PARAM]
+	[PARAM:path]
+		[RELATIVE:Engine/Animation/Persona/AssetBrowser]
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+
+[EXCERPT:Overview]
+![](AssetBrowser.png)
+
+**[Asset Browser]** パネルは、小さな **コンテンツ ブラウザ** スタイルのインターフェースで、ターゲット スケルトンに有効な 
+AnimSequences、BlendSpaces、AnimMontages、および AimOffsetBlendSpaces が表示されます。 
+[/EXCERPT:Overview]
+
+**[Asset Browser]** パネルはペルソナ(Persona) が **Animation** モードの場合のみ表示されます。
+
+|アクション|説明|
+| ------ | ----------- |
+| **Left-click Asset** | アセットを選択し、そのアセットをプレビュー ビューポートで有効にします。 |
+| **Double-click Asset** | アセットを選択し、そのプロパティを **[Anim Asset Details]** パネルと **[Asset Editor]** 内に表示します。詳細は、[](Engine/Animation/Persona\AnimAssetDetails) と [](Engine/Animation/Persona\AssetEditor) をご覧ください。|
+| **Drag Asset into Level Editor viewport** | アセットのインスタンスを Skeletal Mesh アクタとしてレベル エディタ ビューポート内に作成します。 |
+

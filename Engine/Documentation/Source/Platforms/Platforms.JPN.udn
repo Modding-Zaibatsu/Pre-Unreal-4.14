@@ -1,0 +1,59 @@
+﻿INTSourceChangelist:2940199
+Availability:Public
+Title:プラットフォーム開発
+Crumbs:%ROOT%
+Description:PC 以外のプラットフォームの開発に関する情報
+Navigation:platform
+version:4.9
+parent:%ROOT%
+order:8
+
+[VAR:Params]
+[PARAM:image]
+	![%Platforms:title%](%ROOT%/placeholder_topic.png)
+[/PARAM]
+[PARAM:icon]
+	![](%ROOT%/platform_icon.png)(convert:false)
+[/PARAM]
+[PARAM:title]
+	%Platforms:title%
+[/PARAM]
+[PARAM:description]
+	%Platforms:description%
+[/PARAM]
+[PARAM:path]
+	[RELATIVE:Platforms]
+[/PARAM]
+[/VAR]
+
+[VAR:Topic]
+[OBJECT:Topic]
+%params%
+[/OBJECT]
+[/VAR]
+
+[VAR:TopicCompact]
+[OBJECT:TopicCompact]
+%params%
+[/OBJECT]
+[/VAR]
+
+[VAR:Role]
+[OBJECT:Role]
+%params%
+[PARAMLITERAL:id]
+プラットフォーム
+[/PARAMLITERAL]
+[/OBJECT]
+[/VAR]
+
+## プラットフォーム
+
+[DIR(end:"2" output:"listbutton" type:"landing" parent:"Platforms" org:"hierarchy")]
+
+## Platform ツール
+
+[REGION:buttonlist]
+* [](Engine/Deployment/UnrealFrontend "%Engine/Deployment/UnrealFrontend:description%")
+* [](Platforms/DeviceProfiles "%Platforms/DeviceProfiles:description%")
+[/REGION]

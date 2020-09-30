@@ -1,0 +1,257 @@
+﻿INTSourceChangelist:3059681
+Availability:Public
+Title:ボリュームに関するユーザーガイド
+Crumbs:%ROOT%, Engine, Engine/Actors
+Description:ボリュームを配置および操作してビヘイビアとレベル設定を拡張してみましょう
+
+[VAR:playlistnav]
+[OBJECT:PlaylistNavigation]
+	[PARAMLITERAL:id]
+		LevelDesign_Beginner
+	[/PARAMLITERAL]
+	[PARAM:previous]
+		[前のトピック](Engine/Actors/Brushes "%Engine/Actors/Brushes:title%")
+	[/PARAM]
+	[PARAM:next]
+		[次のトピック](Engine/Actors/Triggers "%Engine/Actors/Triggers:title%")
+	[/PARAM]
+	[PARAM:home]
+		[](Tracks/LevelDesign/Beginner)
+		%Tracks/LevelDesign/Beginner:menu%
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+
+
+%playlistnav%
+
+
+[TOC(start:2 end:2)]
+
+
+**ボリューム** とはレベル内の 3D 領域のことです。各ボリュームは特定の目的を果たします。以下の目的が含まれます。
+
+* プレイヤーにダメージを与えます。
+* コリジョン サーフェスとして、プレイヤーがボリューム内へ立ち入ることをブロックします。
+* ライティングや可視性を考慮してレベルの計算方法を変更します。
+
+ボリュームには数多くの種類があり、様々なタスクを実行します。このドキュメントでは、自分のレベルへボリュームを作成する方法を紹介します。またアンリアル エンジン 4 で利用できるボリュームの種類についても説明します。 
+
+### レベル デザインでボリュームを賢く使う方法
+
+レベル デザイナーにとって、レベル内でボリュームをうまく使いこなせることが非常に重要です。ポイントは大きく以下の 2 つです。 
+
+1. ボリュームはゲームプレイ中は目に見えないため、プレイヤーが見ることはできません！
+1. つまり、ボリューム自体を何かのエフェクトに使用することはほとんどありません。 
+
+ボリュームは不可視であるため、レベルデザイナーが多少なりとも助けない限り、プレイヤーはボリュームへ入ったことに通常気づきません。ボリュームは、一般的により大きなエフェクトのコンポーネントとして考えられます。他のレベル エレメントが、そのエフェクトをわかりやすくし、完成させる視覚的手ががりになります。
+
+**Pain Causing Volume** を例に見てみましょう (ボリューム内のもの全てに対してダメージを与えます)。例えばこのようにレベルの真ん中に人が座っている場合…
+
+[VAR:VolumeDemoSize]
+h:301
+[/VAR]
+
+[REGION:imagetable]
+|![](PainCausingVolume_NoEffect.png)(%VolumeDemoSize%)|![](PainCausingVolume_NoEffect_NoVolume.png)(%VolumeDemoSize%)|
+|:-----------:|:----------:|
+|ボリュームの配置 | プレイヤーからの見え方|
+[/REGION]
+
+プレイヤーは、その領域へ入った途端、なぜ自分が怪我するのか理解できません。しかしながら、火を使用したパーティクル エフェクトがボリュームの中央にあると…
+
+
+[REGION:imagetable]
+|![](PainCausingVolume_Effect.png)(h:343)|![](PainCausingVolume_Effect_NoVolume.png)(h:343)|
+|:-----------:|:----------:|
+|ボリュームの配置 | プレイヤーからの見え方|
+[/REGION]
+
+この場所に立つと、なぜ怪我をするのか、プレイヤーから一目瞭然です。
+
+
+
+## ボリュームの作成
+
+ボリュームは **[Modes]** メニューの **[Volumes]** タブからボリュームを選択し、レベル ビューポートへドラッグ＆ドロップして作成します。 
+
+![](creatingVolumes.png)
+
+ボリュームがレベル内に配置されると、ぴったりするまでボリュームのリサイズおよび再配置ができるようになります。 
+
+## ボリュームの種類
+
+
+### Blocking Volume
+
+**Blocking Volume** は、オブジェクトが通過できないコリジョン形状の役割をします。ボリューム上でコリジョン チャネルが調整されると (下の画像)、どのオブジェクトタイプが通過できるのか、また、ボリュームを通過する時にオブジェクトがオーバーラップ イベントを生成すべきかどうかを制御することができるようになります。詳細は、 [コリジョンのドキュメント](Engine\Physics\Collision) をご覧ください。
+
+![](blocking_volume_details.png)
+
+Blocking Volume はスタティックメッシュ上のコリジョン サーフェスの場所、特に構造体の中に壁がある場合に使用することができます。このように使用すると、通常、メッシュ コリジョン サーフェス上で利点が幾つかあります。まず、複雑なコリジョン モデルよりも、計算が簡単にできます。次に、ボリュームはその性質上、中にどのようなオブジェクトがあるか分かるため、高速の物理オブジェクトと衝突する場合、Blocking Volume が便利です。 
+
+
+### Camera Blocking Volume
+
+**Camera Blocking Volume** は、カメラ アクタが通過しないことを意図した空間の定義に使用されるという点で本質的に Blocking Volume と似ています。三人称視点がその例です。プレイヤーのカメラをプレイ スペースだけに制限したいので、カメラがワールドの外側で回転しないようにします。 
+
+Camera Blocking Volume のプロパティは、Blocking Volume と同じく、コリジョン チャンネルで調節します。 
+
+
+### Trigger Volume 
+
+**Trigger Volume** は、プレイヤーまたは他のオブジェクトがそこに出入りする際にイベントを発生させるために使います。Trigger Volume は、 **Level ブループリント** と一緒に手軽に使用して、イベントとゲームプレイのシナリオや機能をブループリントの追加を一切せずにテストすることができます。
+
+例えば、レベル内および **Level ブループリント** 内に TriggerVolume を配置し、そのボリュームに SoundCue を再生したり、Cinematic を開始したり、ドアを開けることもできるオーバーラップ イベントを作成します。 
+
+
+### Nav Mesh Bounds Volume
+
+**Nav Mesh Bounds Volume** は、レベル内における Nav Mesh の計算場所を制御するために使用します。Nav Mesh は、レベル領域のすべての場所でナビゲーション パスを計算するために使用します。
+
+ボリューム内で、適切な歩行角度で全てのサーフェス上に Nav Mesh が作成されます。必要に応じて、これらの Nav Mesh を好きなだけオーバーラップすることができます。
+
+レベル内でナビゲーションが可能な領域を囲む Nav Mesh を 1 つ以上作成するだけで、Nav Mesh Bounds Volume が使用できるようになります。Nav Mesh が自動的にビルドされます。
+
+[REGION:tip]
+**[P]** を押せば、Nav Mesh を好きな時にビューポートに表示することができます。
+[/REGION]
+
+詳細は、コンテンツ サンプルと [NavMech に関するドキュメント](Resources\ContentExamples\NavMesh) をご覧ください。 
+
+
+
+### Physics Volume
+
+**Physics Volume** は、キャラクターや他の物理オブジェクトに影響を与える物理のセットアップを操作できるボリュームです。主に、プレイヤーが泳がなければならない水のある環境の作成に使用されます。ただし、低重力、または無重力の領域を作成し、そこを通るオブジェクトの終端速度に影響を与えるためにも簡単に使用できます。
+
+このボリューム用に指定されたプロパティの中には、以下の画像のように、**[Details (詳細)]** パネルから調整可能なものもあります。 
+
+![](killZdetails.png)
+
+| プロパティ | 説明 |
+| ------- | ------------ |
+| **Terminal Velocity** | 落下時に CharacterMovement を使ってポーンの Terminal Velocity を判断します。 |
+| **Priority** | オーバーラップした場合、優先する PhysicsVolume を判断します。  |
+| **Fluid Friction** | CharacterMovement を使用しているポーンが通過する際にボリュームが適用する摩擦量を判断します。 <br> この値が高いほど、ボリューム内の移動が困難になります。 |
+| **Water Volume** | ボリュームに水などの液体が含まれているかを判断します。 |
+| **Physics on Contact** | ボリュームに触れることでアクタが影響を受けるかを判断します (アクタが影響を受けるためには、デフォルトでボリューム内にいる必要があります)。 |
+
+
+### Pain Causing Volume
+
+**Pain Causing Volume** は、実は Physics Volume にプレーヤーにダメージを与える機能を追加したものです。溶岩の穴、毒ガスのもくもくした塊など、明らかにプレイヤーが行くべきでない領域がレベルに存在する場合に便利です。 
+
+Physics Volume から割り当てが可能なプロパティの他に、Pain Causing Volume には以下の固有のプロパティも付いています。 
+
+![](paincausingvolume.png)
+
+| プロパティ | 説明 |
+| ------- | ------------ |
+| **Pain Causing** | Volume が現在ダメージを与えるかどうかを決定します。  |
+| **Damage Per Sec** | Pain Causing が有効な場合、ボリューム内のアクタに毎秒単位で与えられるダメージです。 |
+| **Damage Type** | アクタに与えるダメージの種類を決定します。 |
+| **Pain Interval** | Pain Causing が有効な場合にダメージが与えられる間隔の秒単位の時間です。  |
+| **Entry Pain** | Pain Causing が有効な場合、Pain Interval により適用されたダメージに加えて、ボリュームに入った時点でダメージが与えられるかどうかを決定します。 |
+
+
+
+### Kill Z Volume
+
+**Kill Z Volume** または「Kill-Brush」は、ボリュームに入ってきたアクタを基本的に全て破壊します (プレイヤーも含まれます)。この種類のボリュームの使用方法としては、崖または高いレッジの下に設定し、そこに落ちたプレイヤーやアクタを消去する、などがあげられます。 
+
+
+
+### Level Streaming Volume
+
+[EXCERPT:LSV]
+**Level Streaming Volume** は [レベル ストリーミング](Engine/LevelStreaming) のプロセスを支援するために使用します。また、プレイヤーのボリュームの出入りに合わせてレベルがメモリに入出力される際、レベルを簡単にカプセル化および制御できるようにします。 
+
+以下の画像のように、**[Details (詳細)]** パネルからプロパティを調整すれば、Level Streaming Volume のレベル ストリーミング処理方法を調整できます。 
+
+![](levelstreamingvolume.png)
+
+| プロパティ | 説明 |
+| ------- | ------------ |
+| **Streaming Levels** | ボリュームに影響を受けるレベルを表示します。 |
+| **Editor Pre Vis Only** | ストリーミング ボリュームをエディタ ストリーミング レベルのプレビズ用にのみ使用するかを判断します。 |
+| **Disabled** | true の場合、ストリーミング ボリュームはストリーミング ボリューム コードで無視されます。<br> レベルから切り離さないで Level Streaming Volume を有効化するか、または Blueprints と Volume Streaming 間でのレベルのストリーミングの切り替えのためにも使用されます。|
+| **Streaming Usage** | ボリュームを何に使うのか、ロードの制御、ロードと可視性または可視性のみなのか (ロード時にブロック) などを判断します。 |
+
+[/EXCERPT]
+
+Level Streaming Volume に関する詳しい情報は、[](Engine/LevelStreaming/StreamingVolumes) をご覧ください。
+
+### Cull Distance Volume
+
+**Cull Distance Volumes** は、オブジェクトのカメラからの位置によって、オブジェクトがあるサイズまたはあるサイズ以下にカリング (またはスクリーンに描画されないように) できる最適化ツールです。Cull Distance Volume は、一定のサイズのオブジェクトをシーンに描画しないことにより最適化しやすくしています。サイズは、最長寸法に合わせて境界ボックスで計算されます。 
+
+Cull Distance Volume 設定は、以下の **[Details]** パネルに **Cull Distances** プロパティにより異なります。
+
+![](CullDistancesProperty.png)
+
+上図のプロパティでは、動作が以下のように定義されます。
+
+* サイズが 50 ユニット未満のボリューム内のオブジェクトは、カメラから 500 ユニット位以上離れるとカリングされ (消滅し) ます。
+* サイズが 120 ユニット未満のボリューム内のオブジェクトは、カメラから 1000 ユニット位以上離れるとカリングされ (消滅し) ます。
+* このケースでは 0 を無限遠とみなされ、カメラが遠ざかることはできないため、サイズが 300 ユニット未満のボリューム内のオブジェクトが カリングされることはありません 。
+
+Cull Distances 配列にエントリを新規に追加して設定を開始します。これは ![](button_Plus.png) ボタンをクリックすれば完了です。次に、任意のオブジェクトのサイズ、およびそのサイズ以下のオブジェクトをカリングしたい希望の距離を入力します。これらのプロパティは、特定の順序で作成する必要はありません。 
+
+### Audio Volume
+**Audio Volumes** は、ボリュームの内外で聞こえるものを制御する区切られたオーディオゾーンを作成する方法を提供するだけでなく、レベル内で様々なサウンドの制御と適用を可能にします。Audio Volumes を使用すると、フェーディングによりオーディオ間のトランジションを生成し、ボリューム自体の中で Ambient Zone 設定を制御することができます。 
+
+このボリュームの **[Details]** パネルからプロパティをいくつか調整し、下図のようにエフェクトをより制御できるようになります。 
+
+![](audiovolume.png)
+
+| プロパティ | 説明 |
+| ------- | ------------ |
+| **Priority** | ボリュームがオーバーラップする場合、優先度の一番高いボリュームをが使用されます。2 つ以上のオーバーラップしているボリュームが同じプロパティの場合、順序は決まっていません。|
+| **Apply Reverb** | リバーブ設定を使うかどうかを判断します。 |
+| **Reverb Effect** | ボリュームに使うリバーブ アセットです。 |
+| **Volume** | リバーブ エフェクトの全体的なボリューム レベルです。 |
+| **Fade Time** | 現在のリバーブ設定からボリューム設定へフェードする時間 (秒) です。  |
+| **Enabled** | ボリュームが現在有効で、音に影響を与えることができるかどうかを判断します。 |
+
+**Ambient Zone** は、関連する Audio Volume 内に置かれているサウンド アクタがプレイヤーの位置によってどのように変化するかを定義します。Ambient Zone の設定は **[Details]** パネルからも調整することができます。 
+
+| プロパティ | 説明 |
+| ------- | ------------ |
+| **Exterior Volume** | プレイヤーがボリューム内にいる時の外部サウンドの最終的なボリューム。 |
+| **Exterior Time** | 新規の外部ボリュームへフェードする秒時間。 |
+| **Exterior LPF** | プレイヤーがボリューム内部にいる場合に、外部サウンドへ適用されるローパスフィルタ乗数 (最大適用 LPF は 0.1)。 |
+| **Exterior LPFTime** | 新規のローパスフィルタ レベルにフェードする秒時間。 |
+| **Interior Volume** | プレイヤーがボリューム外にいる時の内部サウンドの最終的なボリューム。 |
+| **Interior Time** | 新規の内部ボリュームにフェードする秒時間。 |
+| **Interior LPF** | プレイヤーがボリュームの外側にいる時の内側のサウンドのローパスフィルタ乗数 (最大適用 LPF は 0.1)。 |
+| **Interior LPFTime** | 新規のローパスフィルタ レベルにフェードする秒時間。 |
+
+<!--For more information on Ambient Zones, please refer to the following documentation:[Ambient Zones Documentation](Engine/Audio/AmbientZones).-->
+
+### Post Process Volume
+
+**Post Process Volume** は **[Details]** パネルのプロパティを調整することでオーバーライドできるカメラに適用される Post Process 設定のあるスペースです。 
+
+ポストプロセスエフェクトに関する詳細は [ポストプロセス エフェクトに関するドキュメント](Engine/Rendering/PostProcessEffects) を参照してください。
+ 
+
+### Lightmass Importance Volume
+
+**Lightmass Importance Volume** は Lightmass 計算にフォーカスするために使用します。Lightmass とは、事前に計算した光源およびグローバル イルミネーション システムで、アンリアル エンジン 4 で使用されています。レベル内に事前計算されたライトの作成に必要な処理量を縮小して最適化するために、 Lightmass Importance Volume を使用してレベル ジオメトリ領域を囲います。ライトマスは、領域外のものは飛ばして、その領域内でのみ計算を行います。 
+
+Lightmass および Lightmass Importance Volumes に関する詳細は、 [Lightmass に関するドキュメント](Engine/Rendering/LightingAndShadows/Lightmass) を参照してください。
+
+
+### Lightmass Character Indirect Detail Volume
+**Lightmass Character Indirect Detail Volume** は Lightmass Importance Volume と同様に間接ライトのサンプルを生成します。グラウンド上のプレイヤーの高さだけではなく、ボリューム全体の内部にもサンプルを生成します。このタイプのボリュームの使用例は、間接ライティングが確実にシャフトの方向へ正しく伸びるようにするエレベータ シャフトです。 
+
+
+###  Precomputed Visibility Volume
+**Precomputed Visibility Volume** は主にパフォーマンスの最適化に使用されます。これらのボリュームは、ワールド内の位置に対するアクタの可視性を格納します。プレイヤーがアクセスできるエリアのみに配置されます。 
+
+
+### Precomputed Visibility Override Volume
+**Precomputed Visibility Override Volume** を使えば、Precomputed Visibilty Volume の自動生成結果を望まない場合に、手書きのコードでワールド内の位置に対してアクタの可視性をオーバーライドすることができます。これらはまたパフォーマンスの最適化にも使用され、プレイヤーがアクセス可能なエリアにも配置することができます。 
+ 
+

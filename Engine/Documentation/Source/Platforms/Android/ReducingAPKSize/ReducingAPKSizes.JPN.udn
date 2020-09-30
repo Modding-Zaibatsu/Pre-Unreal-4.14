@@ -1,0 +1,28 @@
+﻿INTSourceChangelist:2945303
+Availability:Public
+Title:APK パッケージ サイズを減らす方法 
+Crumbs:%ROOT%, Platforms, Platforms/Android
+Description:パッケージングした Android ゲームのサイズを減らす方法。
+Skilllevel:Intermediate
+Version:4.8
+Parent:Platforms/Android
+tags:Mobile
+tags:Android
+type:overview
+
+[TOC(start:2 end:3)]
+
+UE4 プロジェクトが どのタイプの Android デバイスをターゲットにしていても、アプリケーション パッケージまたは **APK** のサイズを Google Play store 向けに 50MB 以下に減らすことは難しいです。 
+次のガイドでは、プロジェクトの最終版の APK パッケージのサイズを UE4 エディタに備わっているツール以外は使わずに、できる限り小さくするために役立つステップを説明します。 
+
+## ETC1 テクスチャに関する留意点
+ETC1 Texture フォーマットを使って Android 向けにプロジェクトをパックすると、Alpha 情報を埋め込んでいるテクスチャを圧縮せずに、それらを完全に圧縮されていないテクスチャとして扱うことに気づく必要があります。 
+プロジェクトのランタイム時のパフォーマンスがこの影響を大きく受けることはありませんが、プロジェクト APK のサイズを増やします。
+プロジェクトがアルファを使用しているテクスチャを要求している場合は、Alpha が埋め込まれている 1 つのテクスチャを使用するのではなく、Diffuse と Alpha の 2 つに分けた方が良いです。 
+そうすると、プロジェクトがクックされパッケージ化された時に、必ずテクスチャは圧縮されます。
+
+## プラットフォームに依存しない技術
+
+Android 専用の上記の方法の他にも、ターゲット プラットフォームに関係なくパッケージ化されたゲームのサイズを減らす方法はいろいろあります。
+
+[INCLUDE:Engine/Performance/ReducingPackageSize#main(offset:1)]

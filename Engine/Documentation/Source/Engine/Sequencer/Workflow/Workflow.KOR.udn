@@ -1,0 +1,31 @@
+﻿INTSourceChangelist:3038068
+Availability:Public
+Title: 시퀀서로 작업하기
+Crumbs: %ROOT%, Engine
+Description:시퀀서 작업시의 팁, 꼼수, 기타 고려할 사항에 대한 글입니다.
+Navigation:topic
+parent:Engine/Sequencer
+order:5
+Version: 4.12
+
+시퀀서로 콘텐츠를 제작할 때의 속도를 올려주는 내장 바로가기와 단축키가 여럿 있습니다. 팀 구성에 따라 취할 수 있는 작업방식도 여러가지 있습니다.
+
+시퀀서 사용 방법을 이해하면, 다음 글이 생산성이나 작업방식을 개선시키는 데 도움이 될 것입니다.
+
+[REGION:note]
+시퀀서에 처음이신 분들은, [**개요**](Engine\Sequencer\Overview) 페이지를 먼저 확인해 주시기 바랍니다.
+[/REGION]
+
+[OBJECT:TopicButtonList]
+	[PARAM:icon]
+		![](%ROOT%/start_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+	[/PARAM]
+	[PARAM:links]
+		* [](Engine\Sequencer\Workflow\CheatSheet "%Engine\Sequencer\Workflow\CheatSheet:description%")
+		* [](Engine\Sequencer\Workflow\EditorPrefs "%Engine\Sequencer\Workflow\EditorPrefs:description%")
+		* [](Engine\Sequencer\Workflow\ToolUsage "%Engine\Sequencer\Workflow\ToolUsage:description%")
+	[/PARAM]
+[/OBJECT]
+

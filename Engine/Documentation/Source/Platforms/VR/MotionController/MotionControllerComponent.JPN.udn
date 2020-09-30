@@ -1,0 +1,200 @@
+﻿INTSourceChangelist:2940199
+Availability:Public
+Title:Motion Controller Component の設定
+Crumbs:%ROOT%, Platforms
+Description:VR インタラクション用モーション コントローラーの設定方法
+Navigation:platform
+Version:4.9
+SkillLevel:Intermediate
+parent:Platforms/VR
+type:overview
+
+[TOC(start:2)]
+
+アンリアル エンジン 4.9 のリリースで、アンリアル エンジンのモーション コントローラーとのインターフェースが大幅に変更されました。
+モーション コントローラーをコンポーネントとしてポーン / キャラクターに追加し、どちらの「手」にするかが設定可能になって、モーション コントローラーが使用できるようになりました。
+このガイドでは、モーション コントローラーを使うための VR プロジェクトの設定方法について説明します。
+
+[region:tip]
+VR ヘッドセットとモーション コントローラーがパソコンに接続されていますか。必要なドライバーはインストール済みでしょうか。今一度ご確認ください。 
+お済でない場合は [VR に関する情報](Platforms/VR) をご覧ください。UE4 で作業するために各種 VR ヘッドセットの取得方法が記載されています。
+[/region]
+
+## モーション コントローラーの設定
+
+モーション コントローラーを数ステップで簡単に完了できるように VR プロジェクトを設定します。 
+次のセクションでは、モーション コントローラーでプロジェクトで簡単に使う方法を説明します。
+
+1. コンテンツ ブラウザから Player Pawn ブループリントを開きます。
+
+	![](Open_VR_Pawn.png)
+
+	[region:note]
+	次のステップは、VR プロジェクトに特化されておらず、すべてのプロジェクトのポーンに適用できます。
+	[/region]
+
+1. ブループリントを開いたら、**[Viewport]** タブの **[Components]** セクションの **[Add Component (コンポーネントを追加)]** ボタンをクリックして、このブループリントに追加できるコンポーネントを表示します。 
+
+	![](Find_Components.png)
+
+1. **「Motion」** というワードを使って、表示された一覧の中でモーション コントローラーを検索します。 
+	Motion Controller コンポーネントが見つかったら、クリックしてコンポーネント リストに追加します。
+
+	[OBJECT:EmbeddedVideo]
+	[PARAMLITERAL:width]
+	640
+	[/PARAMLITERAL]
+	[PARAMLITERAL:height]
+	360
+	[/PARAMLITERAL]
+	[PARAMLITERAL:videoid]
+	kcyHnfpmWbU
+	[/PARAMLITERAL]
+	[/OBJECT]
+
+1. モーション コントローラーが追加されたらクリックして、**[Motion Controller]** セクションの **[Details (詳細)]** パネルの **[Hand]** が **[Left (左)]** に設定されていることを確認してください。
+
+	![](Setting_Up_Components.png)
+
+1. ゲームを起動すればモーション コントローラーが動作するようになっていますが、ビジュアルは一切レンダリングされていないのでデフォルトでは何も見えません。 
+	これを修正するには、**Static Mesh Component** を [Components] セクションに追加して [Static Mesh] セクションのStatic Mesh コンポーネントの [Details (詳細)] セクションでドロップダウン メニューから使用するスタティックメッシュを選択します。
+
+	[OBJECT:EmbeddedVideo]
+	[PARAMLITERAL:width]
+	640
+	[/PARAMLITERAL]
+	[PARAMLITERAL:height]
+	360
+	[/PARAMLITERAL]
+	[PARAMLITERAL:videoid]
+	x4vjDqnHQnk
+	[/PARAMLITERAL]
+	[/OBJECT]
+
+	[region:tip]
+	コンテンツ ブラウザにスタティック メッシュが表示されない場合、スタティック メッシュをインポートするか、または **[Engine Content]** を有効にして、そこから選択する必要があります。 
+	選択したスタティック メッシュが大きすぎたり小さすぎたりする場合、[Transform (トランスフォーム)] メニューの [Scale] セクションで自由に調整ができます。
+	[/region]
+
+1. 次は [Right Hand] を追加してこの手順を繰り返します。完了すると、Pawn ブループリントは次の画像のようになっています。
+
+	![](Finshed_MC_Setup.png)
+
+	[region:note]
+	上の画像では、コーン形状の 2 つのメッシュが 2 つであることを示すために分かれて移動しました。 
+	プロジェクトを設定する際、お互いの右上に来るように両方のメッシュは 0,0,0 のままにしておきます。
+	[/region]
+
+## モーション コントローラーの作業
+
+UE4 内でのモーション コントローラーの作業は、ゲームパッドやキーボードなどの入力デバイスの場合と似ています。 
+**MotionController** を検索ワードにしてブループリント エディタの **Palette** を検索すると、Motion Controller で利用可能なすべてのボタンと制御が表示されます。
+
+![](Working_With_MC.png)
+
+利用可能な Motion Controller 入力オプションを見てみると、大文字の **L** または **R** の隣に、その値が制御する対象の名前があります。 
+L と R は、モーション コントローラーの **Left** または **Right** であることを意味しています。
+
+![](MC_Left_Right.png)
+
+
+## モーション コントローラーの使用方法
+
+次のセクションでは、**Right-Handed** モーション コントローラーでトリガー ボタンが押された時にスタティック メッシュを含むブループリントがワールドにスポーンされるように、モーション コントローラーを設定していきます。 
+次に **Left-Handed** Motion Controller のトリガー ボタンを押すと、ワールドにスポーンされたスタティック メッシュを含むブループリントがワールドから削除されます。
+
+1. コンテンツ ブラウザ内にブループリントを新規作成し、**BP_Sphere** という名前を付けて、ダブルクリックして開きます。  
+
+1. BP_Sphere Blueprint が開いたら、**[Viewport]** タブを開いて **Static Mesh コンポーネント** を追加します。
+
+	![](Add_SM_Component.png)
+
+1. Static Mesh コンポーネントを **Default Screen Root** の上に移動させ、**ArcadeEditorSphere** に使用する設定にして、ブループリントをコンパイルし保存します。
+
+	[OBJECT:EmbeddedVideo]
+		[PARAMLITERAL:width]
+		640
+		[/PARAMLITERAL]
+		[PARAMLITERAL:height]
+		360
+		[/PARAMLITERAL]
+		[PARAMLITERAL:videoid]
+		PszzV_I0xso
+		[/PARAMLITERAL]
+	[/OBJECT]
+
+	[region:note]
+	**ArcadeEditorSphere** が表示されない場合は、**[View Options (表示オプション)]** で **「Engine Content」** フォルダを有効にし、**「Engine Content」** フォルダをクリックしてコンテンツ ブラウザで表示されるようにします。
+	[/region]
+
+1. BP_Sphere ブループリントを終了して **Pawn** ブループリントを開き、**[Event Graph]** タブをクリックします。
+
+1. **「Objects」** という名前で **Actor** 変数を新規作成し、**Variable Type** を配列に設定します。
+
+	![](Create_New_Var.png)
+
+1. ワールドにオブジェクトを追加する機能を作成するには、イベント グラフに次のブループリント ノードを追加して接続します。完了すると以下の画像のようになります。
+
+	![](Add_Objects_Setup.png)
+
+	[region:note]
+	この例に配置されてたオブジェクトは必ず表示されるように、**Spawn Offset** が追加されました。この部分はなくても機能しますので、**GetActorTransform** ノードから **Return Value** を受け取り、**SpawnActor** ブループリント ノードの **Spawn Transform** 入力へつなぐことで省略可能です。
+	![](Add_Objects_Setup_Alt.png)
+	[/region]
+
+1. Add オブジェクトの設定が完了したら、**Spawn Actor** ブループリント ノードを選んで、1 つ前のステップで作成した ** BP_Sphere** ブループリントを **[Class]** セクションから選択します。
+
+	![](Setting_SpawnActor_Up.png)
+
+1. ワールドにおかれたオブジェクトを削除する機能を作成するには、次のブループリント ノードを追加して接続します。完了すると以下の画像のようになります。
+
+	![](Remove_Objects_Setup.png)
+
+	[region:note]
+	簡単にテストするためにキーボード入力キーをグラフ内に置きました。モーション コントローラーの作業には、この入力を加える必要はありません。
+	[/region]
+
+1. Pawn ブループリントに変更を **コンパイル** して **保存** し、**[Play (再生)]** ボタンを押してレベルをプレビューします。 
+	レベルが始まったら、キーボードの **K** キーを押すか、Right Handed Motion Controller の Right trigger を押してオブジェクトをワールドに追加してみてください。 
+	ワールドからオブジェクトを取り除くには、キーボードの **T** キーを押すか、Left Handed Motion Controller の **Left** trigger を押します。以下のビデオで実演しています。
+
+	[OBJECT:EmbeddedVideo]
+		[PARAMLITERAL:width]
+		640
+		[/PARAMLITERAL]
+		[PARAMLITERAL:height]
+		360
+		[/PARAMLITERAL]
+		[PARAMLITERAL:videoid]
+		VXUowSUKT9I
+		[/PARAMLITERAL]
+	[/OBJECT]
+
+## トレーニング ストリーム
+
+[REGION:topics third]
+[OBJECT:TopicCompactVideo]
+	[PARAMLITERAL:title]
+	モーション コントローラーの設定
+	[/PARAMLITERAL]
+	[PARAMLITERAL:videoid]
+	6ALnsdQnkVQ
+	[/PARAMLITERAL]
+[/OBJECT]
+[OBJECT:TopicCompactVideo]
+	[PARAMLITERAL:title]
+	モーション コントローラーと VR のインタラクションの作成 (パート 1)
+	[/PARAMLITERAL]
+	[PARAMLITERAL:videoid]
+	eRNtgFo6iU0
+	[/PARAMLITERAL]
+[/OBJECT]
+[OBJECT:TopicCompactVideo]
+	[PARAMLITERAL:title]
+		モーション コントローラーと VR のインタラクションの作成 (パート 2)
+	[/PARAMLITERAL]
+	[PARAMLITERAL:videoid]
+	utOahIZgKgc
+	[/PARAMLITERAL]
+[/OBJECT]
+[/REGION]

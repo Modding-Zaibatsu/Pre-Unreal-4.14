@@ -1,0 +1,89 @@
+﻿INTSourceChangelist:2735872
+Availability:Public
+Title:サウンド キュー エディタ UI
+Crumbs: %ROOT%, Engine, Engine/Audio, Engine/Audio/SoundCues/Editor
+Description:サウンドキュー ノードベースのオーディオ アセットをセットアップし、編集するために利用可能なツールのガイド。
+version:4.9
+[TOC(start:2)]
+
+
+
+
+**サウンド キュー エディタ** は、以下の領域に分けられます。
+
+![soundcueeditor.png](soundcueeditor.png)(w:900)
+
+1. [メニュー バー](#メニューバー)
+1. [ツール バー](#ツールバー)
+1. [詳細パネル](#[Details（詳細）]パネル)
+1. [オーディオノードグラフ](#オーディオノードグラフ)
+1. [パレット](#パレット)
+
+[Include:Shared/Editors/Common/EditorMenuItems#UITabTips]
+
+**サウンド キュー エディタ** に関する詳細は、 [](Engine/Audio\SoundCues\Editor) を参照してください。
+
+##メニューバー
+
+:::ファイル
+
+%Shared/Editors/Common/EditorMenuItems:MenuFileSave%
+%Shared/Editors/Common/EditorMenuItems:MenuFileSaveOptions%
+
+
+:::編集
+
+%Shared/Editors/Common/EditorMenuItems:MenuEditUndo%
+%Shared/Editors/Common/EditorMenuItems:MenuEditSettings%
+
+:::アセット
+
+%Shared/Editors/Common/EditorMenuItems:MenuAssetContentBrowser%
+
+:::ウィンドウ
+
+%Shared/Editors/Common/EditorMenuItems:MenuWindowToolbar%
+%Shared/Editors/Common/EditorMenuItems:MenuWindowViewport%
+%Shared/Editors/Common/EditorMenuItems:MenuWindowDetails%
+* **Palette** -  **[Palette]** パネルの表示を切り替えます。
+%Shared/Editors/Common/EditorMenuItems:MenuWindow%
+
+
+:::ヘルプ
+
+%Shared/Editors/Common/EditorMenuItems:MenuHelp%
+
+## ツールバー
+
+| ボタン | 説明 |
+| --- | --- |
+| [INCLUDE:Shared/Editors/Common/EditorToolbarItems#ToolbarSaveIcon] | [INCLUDE:Shared/Editors/Common/EditorToolbarItems#ToolbarSaveDescription] |
+| [INCLUDE:Shared/Editors/Common/EditorToolbarItems#ToolbarCBIcon] | [INCLUDE:Shared/Editors/Common/EditorToolbarItems#ToolbarCBDescription] |
+| ![button_toolbar_playcue.png](SoundCueEditor_PlayCue.png)| サウンド キュー全体を再生します。 |
+| ![button_toolbar_playselected.png](SoundCueEditor_PlayNode.png)| オーディオノード グラフで現在選択しているノードだけを再生します。 |
+| ![button_toolbar_stop.png](SoundCueEditor_Stop.png)| サウンド キューまたはノードの再生を停止します。 |
+
+
+## [Details（詳細）]パネル
+
+![](SoundCueEditor_Details2.png)
+
+**[詳細]** パネルには、現在選択しているノードのプロパティが表示されます。複数ノードを選択している場合は、そうしたノードが共通に持っているプロパティだけが **[詳細]** パネルに表示されます。
+
+このパネルの基本的な操作に関する詳細は、 [エディタの詳細パネル](Engine/UI/LevelEditor\Details) のドキュメントをご覧ください。
+
+## オーディオ ノード グラフ
+
+![Audio Node Graph](Engine/Audio/SoundCues/Editor/SoundCueEditor_Viewport.png)
+
+[INCLUDE:Engine/Audio/SoundCues/Editor#AudioNodeGraph]
+
+## パレット
+
+![Sound node list](Engine/Audio\SoundCues\NodeReference\SoundCueEditor_NodeList.png)
+
+**[パレット]** には、オーディオ ノード グラフで利用可能なすべてのノードが表示されます。ノードを追加するには **[パレット]** からグラフにドラッグします。サウンド ノードを追加する上記以外の方法については、[オーディオノードグラフ](Engine/Audio\SoundCues\Editor#オーディオノードグラフ) をご覧ください。
+
+[REGION:tip]
+以下の方法でオーディオ ノード グラフにコメントを追加することができます。**Add Comment** をグラフにドラッグするか、または **左マウスボタン** でノードの周囲でボックスをドラッグし、選択したノードを **右クリック** し、表示されるコンテキスト メニュー上で **Create Comment from Selection** をクリックします。
+[/REGION]

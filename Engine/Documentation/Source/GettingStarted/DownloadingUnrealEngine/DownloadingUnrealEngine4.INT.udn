@@ -1,0 +1,48 @@
+﻿Availability:Public
+Title:Downloading Unreal Engine Source Code
+Crumbs: %ROOT%, GettingStarted, GettingStarted/DownloadingUnrealEngine
+Description:Steps for connecting to the source code repository and downloading the latest build of Unreal Engine.
+Prereq: GettingStarted/RecommendedSpecifications
+Related: GettingStarted/DownloadingUnrealEngine/GitHub
+Related: GettingStarted/DownloadingUnrealEngine/DownloadZip
+Version: 4.9
+SkillLevel: Advanced
+
+[TOC (start:2 end:3)]
+
+[EXCERPT:Main]
+[PUBLISH:Licensee]
+Unreal Engine 4 is available to be downloaded by licensees from Epic's Perforce (P4V) proxy server. The login credentials for the Perforce server are provided to your team's technical lead by Epic Games in your UDN welcome email. Only one set of login credentials is provided to each team.
+[/PUBLISH:Licensee]
+[PUBLISH:Rocket]
+
+Source code for Unreal Engine 4 (UE4) can be downloaded by our subscribers from the Unreal Engine GitHub repository. Before you can access the [repository](https://github.com/EpicGames/UnrealEngine), you must be an Unreal Engine subscriber with a GitHub account. For instructions on associating your GitHub account with your Unreal Engine account, visit the [UE4 on GitHub](https://www.unrealengine.com/ue4-on-github) page.
+
+<!-- The following is commented out per LaurenR's request during Peer Review on 23.07.15
+With access to our source code, subscribers can customize the engine and tools to meet their needs. Our subscribers are building the editor in Windows, Mac, Linux, and compiling games for both Android and iOS. Source code for all of our tools (such as Unreal Lightmass and Frontend) is included as well.
+-->
+
+[INCLUDE:GettingStarted/DownloadingUnrealEngine/SourceBranches]
+
+[/PUBLISH:Rocket]
+
+[PUBLISH:Licensee]
+[INCLUDE:GettingStarted/DownloadingUnrealEngine/Perforce/Basics#main]
+[/PUBLISH:Licensee]
+
+[PUBLISH:Rocket]
+
+## Next Steps
+
+Subscribers can download Unreal Engine's source code in one of two ways:
+
+*	[%GettingStarted/DownloadingUnrealEngine/GitHub:title%](GettingStarted/DownloadingUnrealEngine/GitHub)
+*	[%GettingStarted/DownloadingUnrealEngine/DownloadZip:title%](GettingStarted/DownloadingUnrealEngine/DownloadZip)
+
+[REGION:note]
+This page shows subscribers how to download and build Unreal Engine from our source code repository on GitHub. If you'd like to download the binary version of Unreal Engine, read our [](GettingStarted/Installation) documentation to learn how to [Get Unreal](https://www.unrealengine.com/).
+[/REGION]
+
+[/PUBLISH:Rocket]
+
+[/EXCERPT:Main]

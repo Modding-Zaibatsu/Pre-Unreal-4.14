@@ -1,0 +1,74 @@
+Availability: Public
+Title: Android Quick Start
+Crumbs:%ROOT%, Platforms, Platforms/Android
+Description:Setting up for development for the Android platform.
+Version:4.12
+Skilllevel:Intermediate
+tags:Android
+tags:Mobile
+type:quickstart
+parent:Platforms/Android
+order:1
+Checkpoint:AndroidQS
+
+
+[VAR:Topic]
+[OBJECT:Topic]
+	[PARAM:image]
+		![](AndroidTopic.jpg)
+	[/PARAM]
+	[PARAM:title]
+		%Platforms/Android/GettingStarted:title%
+	[/PARAM]
+	[PARAM:path]
+		[RELATIVE:Platforms/Android/GettingStarted]
+	[/PARAM]
+	[PARAM:description]
+	%Platforms/Android/GettingStarted:description%
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+
+[VAR:TopicCompact]
+[OBJECT:TopicCompact]
+	[PARAM:image]
+		![](AndroidTopic.jpg)
+	[/PARAM]
+	[PARAM:title]
+		%Platforms/Android/GettingStarted:title%
+	[/PARAM]
+	[PARAM:path]
+		[RELATIVE:Platforms/Android/GettingStarted]
+	[/PARAM]
+	[PARAM:description]
+	%Platforms/Android/GettingStarted:description%
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+
+![](AndroidTopic.jpg)
+
+The Android Quick Start will walk you through setting up your computer and your Android device for deployment, as well as putting a template game on your device using both the launching and packaging features.
+
+## Goals
+
+The focus of the Android Quick start is to walk you through the basics of setting up your PC or Mac for Android Development with UE4.
+
+## Objectives
+
+* Install and setup the Android SDK.
+* Setting up your Android device for development.
+* Creating a project that is targeted towards Android mobile development.
+* How to deploy a level to your Android device
+* How to package your game for release.
+
+[DIR(output:"checkpoint" parent:"Platforms/Android/GettingStarted")]
+
+[region:note]
+Unreal Engine 4 (UE4) now uses a special version of the Android SDK called **CodeWorks for Android 1R4**. This version of CodeWorks for Android was designed specifically for use with UE4 Android based projects. If you have other versions of the Android SDK installed, it is **highly recommend** that you uninstall them and then re-install CodeWorks for Android using the CodeWorks for Android 1R4 installer that is bundled with UE4. This way you can ensure that the Android SDK you are using will be compatible with UE4.
+[/region]
+
+[REGION:call_to_action]
+ [Click to Start](Platforms/Android/GettingStarted/1 "%Platforms/Android/GettingStarted/1:title%")
+[/REGION]
+

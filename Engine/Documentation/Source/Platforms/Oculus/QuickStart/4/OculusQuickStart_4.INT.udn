@@ -1,0 +1,49 @@
+Title:4. Set Up Your Oculus Rift Hardware
+Crumbs:%ROOT%, Platforms, Platforms/Oculus, Platforms/Oculus/QuickStart
+Description:Connect and update your Oculus Rift headset.
+Availability:Public
+Version: 4.9
+SkillLevel: Intermediate
+
+[VAR:Steps]
+[OBJECT:Navigation]
+	[PARAM:previous]
+		[Previous Step](Platforms/Oculus/QuickStart/3 "%Platforms/Oculus/QuickStart/3:title%")
+	[/PARAM]
+	[PARAM:current]
+	[/PARAM]
+	[PARAM:home]
+		[Quick Start Home](Platforms/Oculus/QuickStart)
+	[/PARAM]
+	[PARAM:next]
+		[Next Step](Platforms/Oculus/QuickStart/5 "%Platforms/Oculus/QuickStart/5:title%")
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+
+In this section we will look at how you complete the setup for your Oculus HMD and make sure that it will work with the latest Oculus drivers.
+
+[region:note]
+When you first plug your Oculus Rift into your PC, the Rift software may ask you to update the firmware for your Rift. It is highly recommended that you allow this to update to happen to ensure that your Rift will work properly with UE4.
+[/region]
+
+%Steps%
+
+1. After the Oculus software has finished installing its drivers and software, you will be shown the Rift setup screen. 
+	Press the **Next** button to begin the Rift setup process and follow the directions on the screen.
+
+	![](Rift_Setup_Screen_00.png)
+
+[region:note]
+If you need help during any part of the Rift setup process click on the **Get Help** link that is in the lower lefthand corner to be brought to that help section.
+[/region]
+
+For quick reference, the help links that you can find in the lower right hand corner of each setup section have been listed below. The links have been order in the same way that they come up in the setup process.
+
+* [**Rift Initial Setup Help**](https://support.oculus.com/674612489309093) 
+* [**Rift Care and Maintenance**](https://support.oculus.com/1659691017629165) 
+* [**Using the Headset**](https://support.oculus.com/674612489309093) 
+* [**Oculus Remote**](https://support.oculus.com/835449819935261) 
+* [**Setup Your Xbox Controller (wireless mode)**](https://support.oculus.com/1560296144292386) 
+
+%Steps%

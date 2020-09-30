@@ -1,0 +1,46 @@
+﻿Availability:Docs
+Title:ブループリントの操作
+Crumbs: %ROOT%, Engine/Blueprints
+Description:ブループリントのサンプルのガイド
+
+本ページは、ブループリントで最も使用される 2 つのタイプ、Level ブループリントと Class ブループリントの設定から始めるクイック スタート ガイドです。
+
+[VAR:Topic]
+[OBJECT:Topic]
+	[PARAM:image]
+		![%Engine/Actors/Placement:title%](Engine/Actors/Placement/actorplacement_topic.png)(convert:false)
+	[/PARAM]
+	[PARAM:icon]
+		![](%ROOT%/editor_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+		%Engine/Actors/Placement:title%
+	[/PARAM]
+	[PARAM:description]
+		%Engine/Actors/Placement:description%
+	[/PARAM]
+	[PARAM:path]
+		[RELATIVE:Engine/Actors/Placement]
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+
+[VAR:TopicCompact]
+[OBJECT:TopicCompact]
+	[PARAM:image]
+		![%Engine/Actors/Placement:title%](Engine/Actors/Placement/actorplacement_topic.png)(convert:false)
+	[/PARAM]
+	[PARAM:icon]
+		![](%ROOT%/editor_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+		%Engine/Actors/Placement:title%
+	[/PARAM]
+	[PARAM:description]
+		%Engine/Actors/Placement:description%
+	[/PARAM]
+	[PARAM:path]
+		[RELATIVE:Engine/Actors/Placement]
+	[/PARAM]
+[/OBJECT]
+[/VAR]

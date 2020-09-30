@@ -1,0 +1,18 @@
+﻿INTSourceChangelist:3103367
+Availability:Public
+Title:ローカリゼーション
+Crumbs:%ROOT%, Gameplay
+Description:プロジェクトのローカリゼーション方法に関する情報
+Related:Programming/UnrealArchitecture/StringHandling/FText
+version:4.9
+
+
+## テキストのローカライズ
+[DIR(output:"listbutton" parent:"Gameplay/Localization")]
+
+
+
+[REGION:tip]
+オーディオのローカリゼーションが適切にサポートされる直前に、アセットのローカリゼーションが行われます。 
+実装は、ロケール専用バージョンのアセット パッケージ全体をスワッピングして行われます。 
+[/REGION:tip]

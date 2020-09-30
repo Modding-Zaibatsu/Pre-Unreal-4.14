@@ -1,0 +1,92 @@
+Availability:Public
+Title:Skeletal Controls
+Crumbs: %ROOT%, Engine, Engine/Animation, Engine/Animation/NodeReference
+Description:Animation nodes that allow for direct manipulation and applying solvers to the bones of the target Skeleton.
+version: 4.12
+
+[REGION:banner]
+![Skeletal Control](skelcontrol_banner.png)(convert:false)
+[/REGION]
+
+[EXCERPT:Intro]
+**SkeletalControls** (also called **SkelControls**) allow direct control of bones within a Skeleton. These can be 
+used within Animation Blueprints to control an individual bone, create IK chains, and more. This direct control of the 
+underlying Skeleton provides the ability to create procedural, dynamically-driven animation. The **Transform** of 
+one bone can be used to drive another or can be used to conform the feet of a character to the ground while 
+playing a generic walk animation. Any sort of modification can be used to tweak or completely override the bone 
+Transforms applied by AnimationSequences.
+[/EXCERPT:Intro]
+
+
+## Common Pins and Properties
+
+Some pins and properties are common to all SkeletalControls. These are described below.
+
+| Pin | Description |
+| --- | ----------- |
+| [REGION:tablesection]**Input Pins**[/REGION] ||
+| **Component Pose** | The input pose to be transformed |
+| **Alpha** | A float value in the range [0.0, 1.0] to use as the alpha value to determine the weighting of the Transform applied by the SkeletalControl. A value of 0.0 gives full weighting to the input pose, while a value of 1.0 gives full weighting to the control's computed Transform. |
+| [REGION:tablesection]**Output Pins**[/REGION] ||
+| **Pose (Blank)** | The final pose after the Transform has been applied |
+
+[EXCERPT:LODThresh]
+![](perf.png)
+
+| Property | Description |
+| --- | --- |
+| **LOD Threshold** | This is the max Level of Detail (**LOD**) that this node is permitted to run on. For example: if you have LOD Threshold set to **2**, it will run until **LOD 2**, but disable itself once the component's LOD becomes **3**. |
+[/EXCERPT]
+
+
+## Component Space
+
+[INCLUDE:Engine/Animation/NodeReference/SpaceConversion#intro]
+
+[REGION:note]
+See [](Engine/Animation/NodeReference/SpaceConversion) for more information on the space conversion nodes.
+[/REGION]
+
+## Skeletal Control Nodes
+
+Below are links to additional pages with information about each of the Skeletal Control Nodes within the AnimGraph. 
+
+[OBJECT:TopicButtonList]
+	[PARAM:icon]
+		![](%ROOT%/start_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+	Skeletal Control
+	[/PARAM]
+	[PARAM:links]
+		* [](Engine\Animation\NodeReference\SkeletalControls\AnimDynamics "%Engine\Animation\NodeReference\SkeletalControls\AnimDynamics:description%")
+		* [](Engine\Animation\NodeReference\SkeletalControls\ApplyPercentRotation "%Engine\Animation\NodeReference\SkeletalControls\ApplyPercentRotation:description%")
+		* [](Engine\Animation\NodeReference\SkeletalControls\BoneDrivenController "%Engine\Animation\NodeReference\SkeletalControls\BoneDrivenController:description%")		
+		* [](Engine\Animation\NodeReference\SkeletalControls\CopyBone "%Engine\Animation\NodeReference\SkeletalControls\CopyBone:description%")
+		* [](Engine\Animation\NodeReference\SkeletalControls\HandIKRetargeting "%Engine\Animation\NodeReference\SkeletalControls\HandIKRetargeting:description%")
+		* [](Engine\Animation\NodeReference\SkeletalControls\LookAt "%Engine\Animation\NodeReference\SkeletalControls\LookAt:description%")		
+		* [](Engine\Animation\NodeReference\SkeletalControls\SpringController "%Engine\Animation\NodeReference\SkeletalControls\SpringController:description%")
+		* [](Engine\Animation\NodeReference\SkeletalControls\TransformBone "%Engine\Animation\NodeReference\SkeletalControls\TransformBone:description%")
+		* [](Engine\Animation\NodeReference\SkeletalControls\TrailController "%Engine\Animation\NodeReference\SkeletalControls\TrailController:description%")		
+		* [](Engine\Animation\NodeReference\SkeletalControls\TwistCorrective "%Engine\Animation\NodeReference\SkeletalControls\TwistCorrective:description%")
+		* [](Engine\Animation\NodeReference\SkeletalControls\TwoBoneIK "%Engine\Animation\NodeReference\SkeletalControls\TwoBoneIK:description%")
+		* [](Engine\Animation\NodeReference\SkeletalControls\ObserveBone "%Engine\Animation\NodeReference\SkeletalControls\ObserveBone:description%")		
+	[/PARAM]
+[/OBJECT]
+
+<!--
+[REGION:topics third]
+%Engine\Animation\NodeReference\SkeletalControls\AnimDynamics:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\ApplyPercentRotation:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\BoneDrivenController:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\CopyBone:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\HandIKRetargeting:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\LookAt:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\SpringController:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\TransformBone:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\TrailController:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\TwistCorrective:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\TwoBoneIK:TopicCompact%
+%Engine\Animation\NodeReference\SkeletalControls\ObserveBone:TopicCompact%
+[/REGION]
+-->

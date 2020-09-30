@@ -1,0 +1,38 @@
+﻿INTSourceChangelist:2666004
+Availability:Public
+Title:ペルソナのメッシュ詳細パネル
+Crumbs: %ROOT%, Engine, Engine/Animation, Engine/Animation/Persona
+Description:ペルソナ アニメーション エディタのメッシュ詳細パネルのユーザーガイド
+version: 4.9
+
+[VAR:Topic]
+[OBJECT:Topic]
+	[PARAM:image]
+		![%Engine/Animation/Persona/MeshDetails:title%](Engine/Animation/animation_topic.png)
+	[/PARAM]
+	[PARAM:icon]
+		![](%ROOT%/content_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+		%Engine/Animation/Persona/MeshDetails:title%
+	[/PARAM]
+	[PARAM:description]
+		%Engine/Animation/Persona/MeshDetails:description%
+	[/PARAM]
+	[PARAM:path]
+		[RELATIVE:Engine/Animation/Persona/MeshDetails]
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+
+[EXCERPT:Overview]
+![](MeshDetails.png)
+
+
+**[Mesh Details]** パネルは、表面、スキニングや LOD オプションなどに適用されたマテリアルなど、スケルタル メッシュのメッシュに関する特定のプロパティを表示します。このモードが表示されるのは、ペルソナが **Mesh** モードの場合のみです。 
+[/EXCERPT:Overview]
+
+このパネルはペルソナ内で特定のメッシュの編集作業用に確保されていますが、機能的にはメインエディタの標準 **[Details]** パネルと同じです。 
+
+このパネルの基本的な使用に関する詳細は、[エディタ詳細パネル](Engine/UI/LevelEditor\Details) ドキュメントを参照してください。
+

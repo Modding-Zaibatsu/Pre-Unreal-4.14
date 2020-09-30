@@ -1,0 +1,204 @@
+﻿INTSourceChangelist:2897467
+Availability:Public
+Title:物理ボディのリファレンス
+Crumbs: %ROOT%
+Description:物理ボディ、ボディ インスタンス、プロパティ リファレンス
+
+[VAR:Topic]
+[OBJECT:Topic]
+	[PARAM:image]
+		![%Engine/Physics/PhysicsBodies:title%](Engine/Physics/physics_topic.png)
+	[/PARAM]
+	[PARAM:icon]
+		![](%ROOT%/physics_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+		%Engine/Physics/PhysicsBodies:title%
+	[/PARAM]
+	[PARAM:description]
+		%Engine/Physics/PhysicsBodies:description%
+	[/PARAM]
+	[PARAM:path]
+		[RELATIVE:Engine/Physics/PhysicsBodies]
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+[VAR:TopicCompact]
+[OBJECT:TopicCompact]
+	[PARAM:image]
+		![%Engine/Physics/PhysicsBodies:title%](Engine/Physics/physics_topic.png)
+	[/PARAM]
+	[PARAM:icon]
+		![](%ROOT%/physics_icon.png)(convert:false)
+	[/PARAM]
+	[PARAM:title]
+		%Engine/Physics/PhysicsBodies:title%
+	[/PARAM]
+	[PARAM:description]
+		%Engine/Physics/PhysicsBodies:description%
+	[/PARAM]
+	[PARAM:path]
+		[RELATIVE:Engine/Physics/PhysicsBodies]
+	[/PARAM]
+[/OBJECT]
+[/VAR]
+
+このページは、Physics カテゴリおよび Collision カテゴリのプロパティのリファレンス リストです。Collision Responses (コリジョン反応) または Collision Presets (コリジョン プリセット) のリファレンスについては、以下をご覧ください。[](Engine/Physics/Collision/Reference).
+
+
+##プロパティ
+
+以下は、主要カテゴリ別にした物理ボディ (ボディ インスタンス) のプロパティです。
+
+
+[OBJECT:modulesectionexpanded]
+	[PARAMLITERAL:id]
+		phys
+	[/PARAMLITERAL]
+	[PARAM:heading]
+		Physics
+	[/PARAM]
+	[PARAM:content]
+		%p1%
+	[/PARAM]
+[/OBJECT]
+
+[VAR:p1]
+
+![](physicsProps.png)
+
+[REGION:raw]
+| プロパティ | %spacer% | 説明 |
+| --- | :---: | :--- |
+| **Simulate Physics** || %doxygen:FBodyInstance::bSimulatePhysics% |
+| **Mass in KG** || KG 単位の質量です。 |
+| **Angular Damping** || %doxygen:FBodyInstance::AngularDamping% |
+| **Linear Damping** || %doxygen:FBodyInstance::LinearDamping% |
+| **Enable Gravity** || %doxygen:FBodyInstance::bEnableGravity% |
+|[REGION:tablesection]**コンストレイント**[/REGION]|||
+| **Lock Position** || [INCLUDE:#lockpos] |
+| **Lock Rotation** || [INCLUDE:#lockrot] |
+| **Mode** || [INCLUDE:#mode] |
+[/REGION]
+
+### 詳細
+
+![](physicsPropsAdv.png)
+
+[REGION:raw]
+| プロパティ | %spacer% | 説明 |
+| --- | :---: | :--- |
+| **Auto Weld** || %doxygen:FBodyInstance::bAutoWeld% |
+| **Start Awake** || %doxygen:FBodyInstance::bStartAwake% |
+| **Center Of Mass Offset** || %doxygen:FBodyInstance::COMNudge% |
+| **Mass Scale** || %doxygen:FBodyInstance::MassScale% |
+| **Max Angular Velocity** || %doxygen:FBodyInstance::MaxAngularVelocity% |
+| **Use Async Scene** || %doxygen:FBodyInstance::bUseAsyncScene% |
+| **Override Max Depenetration Velocity** || %doxygen:FBodyInstance::bOverrideMaxDepenetrationVelocity% |
+| **Max Depenetration Velocity** || %doxygen:FBodyInstance::MaxDepenetrationVelocity% |
+| **Override Walkable Slope on Instance** || %doxygen:FBodyInstance::bOverrideWalkableSlopeOnInstance% |
+| **Walkable Slope Override** || %doxygen:UBodySetup::WalkableSlopeOverride% 詳細は **[](Engine/Physics/WalkableSlope)** をご覧ください。 |
+| **Walkable Slope Behavior** || %doxygen:FWalkableSlopeOverride::WalkableSlopeBehavior% |
+| **Walkable Slope Angle** || %doxygen:FWalkableSlopeOverride::WalkableSlopeAngle% 
+| **Sleep Family** || %doxygen:FBodyInstance::SleepFamily% |
+| **Position Solver Iteration Count** || %doxygen:FBodyInstance::PositionSolverIterationCount% |
+| **Velocity Solver Iteration Count** || %doxygen:FBodyInstance::VelocitySolverIterationCount% |
+| **Should Update Physics Volume** || %doxygen:USceneComponent::bShouldUpdatePhysicsVolume% |
+
+[/REGION]
+
+[/VAR]
+
+
+[OBJECT:modulesectionexpanded]
+	[PARAMLITERAL:id]
+		coll
+	[/PARAMLITERAL]
+	[PARAM:heading]
+		Collision
+	[/PARAM]
+	[PARAM:content]
+		%p2%
+	[/PARAM]
+[/OBJECT]
+
+[VAR:p2]
+
+![](collisionProps.png)
+
+[REGION:raw]
+| プロパティ | %spacer% | 説明 |
+| --- | :---: | :--- |
+| **Simulation Generates Hit Events** || %doxygen:FBodyInstance::bNotifyRigidBodyCollision% |
+| **Phys Material Override** || %doxygen:FBodyInstance::PhysMaterialOverride% |
+| **Generate Overlap Events** || %doxygen:UPrimitiveComponent::bGenerateOverlapEvents% |
+| **Collision Responses** || 詳細は **[](Engine/Physics/Collision/Reference)** をご覧ください。 |
+[/REGION]
+
+### 詳細
+
+![](collisionPropsAdv.png)
+
+[REGION:raw]
+| プロパティ | %spacer% | 説明 |
+| --- | :---: | :--- |
+| **Use CCD** || %doxygen:FBodyInstance::bUseCCD% |
+| **Always Create Physics State** || %doxygen:UPrimitiveComponent::bAlwaysCreatePhysicsState% |
+| **Multi Body Overlap** || %doxygen:UPrimitiveComponent::bMultiBodyOverlap% | 
+| **Check Async Scene On Move** || %doxygen:UPrimitiveComponent::bCheckAsyncSceneOnMove% |
+| **Trace Complex On Move** || %doxygen:UPrimitiveComponent::bTraceComplexOnMove% |
+| **Return Material On Move** || %doxygen:UPrimitiveComponent::bReturnMaterialOnMove% |
+| **Can Ever Affect Navigation ** || ナビゲーションに影響を及ぼすかどうかを設定します。 |
+
+[/REGION]
+
+[/VAR]
+
+[VAR:spacer]![](%ROOT%/spacer.png)(w:150 convert:false)[/VAR]
+
+[VAR:spacer2]![](%ROOT%/spacer.png)(w:40 convert:false)[/VAR]
+
+<!--
+[EXCERPT:lockpos]
+
+%doxygen:FBodyInstance::bLockTranslation%
+
+[REGION:raw]
+| プロパティ | %spacer2% | 説明 |
+| --- | :---: | :--- |
+| **Lock X Translation** || %doxygen:FBodyInstance::bLockXTranslation% |
+| **Lock Y Translation** || %doxygen:FBodyInstance::bLockYTranslation% |
+| **Lock Z Translation** || %doxygen:FBodyInstance::bLockZTranslation% |
+[/REGION]
+[/EXCERPT]
+
+[EXCERPT:lockrot]
+
+%doxygen:FBodyInstance::bLockRotation%
+
+[REGION:raw]
+| プロパティ | %spacer2% | 説明 |
+| --- | :---: | :--- |
+| **Lock X Rotation** || %doxygen:FBodyInstance::bLockXRotation% |
+| **Lock Y Rotation** || %doxygen:FBodyInstance::bLockYRotation% |
+| **Lock Z Rotation** || %doxygen:FBodyInstance::bLockZRotation% |
+[/REGION]
+[/EXCERPT]
+
+[EXCERPT:mode]
+
+%doxygen:FBodyInstance::DOFMode%
+
+[REGION:raw]
+| プロパティ | %spacer2% | 説明 |
+| --- | :---: | :--- |
+| **Default** || プロジェクト設定から自由度を継承します。 |
+| **Six DOF** || 回転および移動をフリーズする場合の軸を指定します。 |
+| **YZPlane** || Y-Z プレーンと平行な 2D 移動を有効にします。 |
+| **XZPlane** || X-Z プレーンと平行な 2D 移動を有効にします。 |
+| **XYPlane** || X-Y プレーンと平行な 2D 移動を有効にします。 |
+| **Custom Plane** || 所定の法線と平行な 2D 移動を有効にします。 |
+| **None** || コンストレイントなし |
+[/REGION]
+[/EXCERPT]
+-->
