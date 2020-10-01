@@ -84,7 +84,8 @@ void FWindowsWindow::Initialize( FWindowsApplication* const Application, const T
 		{
 			if( bApplicationSupportsPerPixelBlending )
 			{
-				WindowExStyle |= WS_EX_COMPOSITED;
+				// This code sucks. It messes up the UI.
+				// WindowExStyle |= WS_EX_COMPOSITED;
 			}
 		}
 #endif
