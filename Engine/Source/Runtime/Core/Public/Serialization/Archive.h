@@ -21,7 +21,7 @@ struct FWeakObjectPtr;
 //@todoio if this is off, then we should leave the package file format completely unchanged....!!!!! this is really important to fix before we merge to main
 //#define COOK_FOR_EVENT_DRIVEN_LOAD (1)
 
-#define SPLIT_COOKED_FILES (1)
+#define SPLIT_COOKED_FILES (0)
 
 #if !defined(USE_NEW_ASYNC_IO)
 #error "USE_NEW_ASYNC_IO must be defined"
