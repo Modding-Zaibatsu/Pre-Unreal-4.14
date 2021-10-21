@@ -29,7 +29,7 @@ void FDevVersionRegistration::DumpVersionsToLog()
 // Unique Blueprints Object version id
 const FGuid FBlueprintsObjectVersion::GUID(0xB0D832E4, 0x1F894F0D, 0xACCF7EB7, 0x36FD4AA2);
 // Register Blueprints custom version with Core
-FDevVersionRegistration GRegisterBlueprintsObjectVersion(FBlueprintsObjectVersion::GUID, FBlueprintsObjectVersion::LatestVersion, TEXT("Dev-Blueprints"));
+FDevVersionRegistration GRegisterBlueprintsObjectVersion(FBlueprintsObjectVersion::GUID, FBlueprintsObjectVersion::AllowDeletionConformed, TEXT("Dev-Blueprints"));
 
 // Unique Build Object version id
 const FGuid FBuildObjectVersion::GUID(0xE1C64328, 0xA22C4D53, 0xA36C8E86, 0x6417BD8C);
@@ -44,12 +44,12 @@ FDevVersionRegistration GRegisterCoreObjectVersion(FCoreObjectVersion::GUID, FCo
 // Unique Editor Object version id
 const FGuid FEditorObjectVersion::GUID(0xE4B068ED, 0xF49442E9, 0xA231DA0B, 0x2E46BB41);
 // Register Editor custom version with Core
-FDevVersionRegistration GRegisterEditorObjectVersion(FEditorObjectVersion::GUID, FEditorObjectVersion::LatestVersion, TEXT("Dev-Editor"));
+FDevVersionRegistration GRegisterEditorObjectVersion(FEditorObjectVersion::GUID, FEditorObjectVersion::SplineComponentCurvesInStruct, TEXT("Dev-Editor"));
 
 // Unique Framework Object version id
 const FGuid FFrameworkObjectVersion::GUID(0xCFFC743F, 0x43B04480, 0x939114DF, 0x171D2073);
 // Register Framework custom version with Core
-FDevVersionRegistration GRegisterFrameworkObjectVersion(FFrameworkObjectVersion::GUID, FFrameworkObjectVersion::LatestVersion, TEXT("Dev-Framework"));
+FDevVersionRegistration GRegisterFrameworkObjectVersion(FFrameworkObjectVersion::GUID, FFrameworkObjectVersion::RemoveSoundWaveCompressionName, TEXT("Dev-Framework"));
 
 // Unique Mobile Object version id
 const FGuid FMobileObjectVersion::GUID(0xB02B49B5, 0xBB2044E9, 0xA30432B7, 0x52E40360);
@@ -79,12 +79,12 @@ FDevVersionRegistration GRegisterPlatformObjectVersion(FPlatformObjectVersion::G
 // Unique Rendering Object version id
 const FGuid FRenderingObjectVersion::GUID(0x12F88B9F, 0x88754AFC, 0xA67CD90C, 0x383ABD29);
 // Register Rendering custom version with Core
-FDevVersionRegistration GRegisterRenderingObjectVersion(FRenderingObjectVersion::GUID, FRenderingObjectVersion::LatestVersion, TEXT("Dev-Rendering"));
+FDevVersionRegistration GRegisterRenderingObjectVersion(FRenderingObjectVersion::GUID, FRenderingObjectVersion::IntroducedMeshDecals, TEXT("Dev-Rendering"));
 
 // Unique Sequencer Object version id
 const FGuid FSequencerObjectVersion::GUID(0x7B5AE74C, 0xD2704C10, 0xA9585798, 0x0B212A5A);
 // Register Sequencer custom version with Core
-FDevVersionRegistration GRegisterSequencerObjectVersion(FSequencerObjectVersion::GUID, FSequencerObjectVersion::LatestVersion, TEXT("Dev-Sequencer"));
+FDevVersionRegistration GRegisterSequencerObjectVersion(FSequencerObjectVersion::GUID, FSequencerObjectVersion::BeforeCustomVersionWasAdded, TEXT("Dev-Sequencer"));
 
 // Unique VR Object version id
 const FGuid FVRObjectVersion::GUID(0xD7296918, 0x1DD64BDD, 0x9DE264A8, 0x3CC13884);
