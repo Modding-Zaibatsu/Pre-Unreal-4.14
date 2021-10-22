@@ -2156,6 +2156,12 @@ void UStaticMesh::Serialize(FArchive& Ar)
 	bool bCooked = Ar.IsCooking();
 	Ar << bCooked;
 
+	if (bCooked) {
+		for (FStaticMaterial& Mat : StaticMaterials) {
+			Materials.Add(Mat.MaterialInterface);
+		}
+	}
+
 #if WITH_EDITORONLY_DATA
 	if (Ar.IsLoading() && Ar.UE4Ver() < VER_UE4_REMOVE_ZERO_TRIANGLE_SECTIONS)
 	{
@@ -2167,7 +2173,9 @@ void UStaticMesh::Serialize(FArchive& Ar)
 
 	if (Ar.UE4Ver() >= VER_UE4_STATIC_MESH_STORE_NAV_COLLISION)
 	{
-		Ar << NavCollision;
+		if (!bCooked) {
+			Ar << NavCollision;
+		}
 #if WITH_EDITOR
 		if ((BodySetup != nullptr) && 
 			bHasNavigationData && 
@@ -2221,9 +2229,11 @@ void UStaticMesh::Serialize(FArchive& Ar)
 			BodySetup->Serialize( Ar );
 		}
 
-		if ( NavCollision )
-		{
-			NavCollision->Serialize( Ar );
+		if (!bCooked) {
+			if (NavCollision)
+			{
+				NavCollision->Serialize(Ar);
+			}
 		}
 
 		//TODO: Count these members when calculating memory used
@@ -2310,11 +2320,11 @@ void UStaticMesh::Serialize(FArchive& Ar)
 	}
 	else if (Ar.IsLoading())
 	{
-		for (UMaterialInterface *MaterialInterface : Materials_DEPRECATED)
+		for (UMaterialInterface *MaterialInterface : Materials)
 		{
 			StaticMaterials.Add(FStaticMaterial(MaterialInterface, MaterialInterface != nullptr ? MaterialInterface->GetFName() : NAME_None));
 		}
-		Materials_DEPRECATED.Empty();
+		Materials.Empty();
 	}
 }
 

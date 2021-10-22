@@ -324,9 +324,6 @@ struct FStaticMaterial
 	ENGINE_API friend bool operator==(const FStaticMaterial& LHS, const UMaterialInterface& RHS);
 	ENGINE_API friend bool operator==(const UMaterialInterface& LHS, const FStaticMaterial& RHS);
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, transient, Category = StaticMesh)
-	class UMaterialInterface* MaterialInterface;
-
 	/*This name should be use by the gameplay to avoid error if the skeletal mesh Materials array topology change*/
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = StaticMesh)
 	FName MaterialSlotName;
@@ -336,6 +333,10 @@ struct FStaticMaterial
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = StaticMesh)
 	FName ImportedMaterialSlotName;
 #endif //WITH_EDITORONLY_DATA
+
+public:
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, transient, Category = StaticMesh)
+	class UMaterialInterface* MaterialInterface;
 };
 
 
@@ -387,7 +388,7 @@ class UStaticMesh : public UObject, public IInterface_CollisionDataProvider, pub
 
 	/** Materials used by this static mesh. Individual sections index in to this array. */
 	UPROPERTY()
-	TArray<UMaterialInterface*> Materials_DEPRECATED;
+	TArray<UMaterialInterface*> Materials;
 
 	UPROPERTY()
 	TArray<FStaticMaterial> StaticMaterials;
