@@ -2160,6 +2160,8 @@ void UStaticMesh::Serialize(FArchive& Ar)
 		for (FStaticMaterial& Mat : StaticMaterials) {
 			Materials.Add(Mat.MaterialInterface);
 		}
+
+		StaticMaterials.Empty();
 	}
 
 #if WITH_EDITORONLY_DATA
