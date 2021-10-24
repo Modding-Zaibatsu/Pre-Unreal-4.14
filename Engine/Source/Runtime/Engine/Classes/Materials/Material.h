@@ -463,7 +463,7 @@ public:
 	float TranslucencyDirectionalLightingIntensity;
 
 	/** Allows a translucenct material to be used with custom depth writing by compiling additional shaders. */
-	UPROPERTY(EditAnywhere, Category=Translucency, AdvancedDisplay, meta=(DisplayName = "Allow Custom Depth Writes"))
+	//UPROPERTY(EditAnywhere, Category=Translucency, AdvancedDisplay, meta=(DisplayName = "Allow Custom Depth Writes"))
 	uint32 AllowTranslucentCustomDepthWrites:1;
 
 	/** Scale used to make translucent shadows more or less opaque than the material's actual opacity. */
@@ -651,7 +651,7 @@ public:
 	 * Forward renderer: enables multiple parallax-corrected reflection captures that blend together.
 	 * Mobile renderer: blend between nearest 3 reflection captures, but reduces the number of samplers available to the material as two more samplers will be used for reflection cubemaps.
 	 */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ForwardShading, meta = (DisplayName = "High Quality Reflections"))
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ForwardShading, meta = (DisplayName = "High Quality Reflections"))
 	uint32 bUseHQForwardReflections : 1;
 
 	/* Enables planar reflection when using the forward renderer or mobile. Enabling this setting reduces the number of samplers available to the material as one more sampler will be used for the planar reflection. */
@@ -659,7 +659,7 @@ public:
 	uint32 bUsePlanarForwardReflections : 1;
 
 	/* Reduce roughness based on screen space normal changes. */
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=ForwardShading)
+	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=ForwardShading)
 	uint32 bNormalCurvatureToRoughness : 1;
 
 	/** The type of tessellation to apply to this object.  Note D3D11 required for anything except MTM_NoTessellation. */
