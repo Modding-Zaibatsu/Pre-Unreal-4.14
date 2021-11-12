@@ -100,7 +100,7 @@ class ENGINE_API UMaterialExpression : public UObject
 	int32 MaterialExpressionEditorY;
 
 	/** Expression's Graph representation */
-	UPROPERTY(transient)
+	//UPROPERTY(transient)
 	UEdGraphNode*	GraphNode;
 
 	/** Text of last error for this expression */
@@ -173,11 +173,11 @@ class ENGINE_API UMaterialExpression : public UObject
 	UPROPERTY()
 	uint32 bShowOutputs:1;
 
-#if WITH_EDITORONLY_DATA
+//#if WITH_EDITORONLY_DATA
 	/** Localized categories to sort this expression into... */
 	UPROPERTY()
 	TArray<FText> MenuCategories;
-#endif // WITH_EDITORONLY_DATA
+//#endif // WITH_EDITORONLY_DATA
 
 	/** The expression's outputs, which are set in default properties by derived classes. */
 	UPROPERTY()

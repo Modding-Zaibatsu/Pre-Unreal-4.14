@@ -466,6 +466,21 @@ void FLightmassExporter::AddMaterial(UMaterialInterface* InMaterialInterface, co
 		//@TODO: Add package to warning list if it needs to be resaved (perf warning)
 		InMaterialInterface->UpdateLightmassTextureTracking();
 
+		// Check material instance parent...
+		UMaterialInstance* MaterialInst = Cast<UMaterialInstance>(InMaterialInterface);
+		if (MaterialInst)
+		{
+			if (MaterialInst->Parent)
+			{
+				if (MaterialInst->ParentLightingGuid != MaterialInst->Parent->GetLightingGuid())
+				{
+					//@TODO: Add package to warning list if it needs to be resaved (perf warning)
+					MaterialInst->ParentLightingGuid = MaterialInst->Parent->GetLightingGuid();
+					MaterialInst->SetLightingGuid();
+				}
+			}
+		}
+
 		Materials.Add(InMaterialInterface);
 		MaterialExportSettings.Add(InMaterialInterface, ExportSettings);
 	}

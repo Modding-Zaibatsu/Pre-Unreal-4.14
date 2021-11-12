@@ -1610,6 +1610,13 @@ void UMaterialInstance::CacheResourceShadersForRendering()
 {
 	check(IsInGameThread() || IsAsyncLoading());
 
+	// Fix-up the parent lighting guid if it has changed...
+	if (Parent && (Parent->GetLightingGuid() != ParentLightingGuid))
+	{
+		SetLightingGuid();
+		ParentLightingGuid = Parent ? Parent->GetLightingGuid() : FGuid(0,0,0,0);
+	}
+	
 	UpdatePermutationAllocations();
 	UpdateOverridableBaseProperties();
 
@@ -2416,6 +2423,15 @@ void UMaterialInstance::PostEditChangeProperty(FPropertyChangedEvent& PropertyCh
 {
 	Super::PostEditChangeProperty(PropertyChangedEvent);
 
+	UProperty* PropertyThatChanged = PropertyChangedEvent.Property;
+	if(PropertyThatChanged)
+	{
+		if(PropertyThatChanged->GetName()==TEXT("Parent"))
+		{
+			ParentLightingGuid = Parent ? Parent->GetLightingGuid() : FGuid(0,0,0,0);
+		}
+	}
+	
 	// Ensure that the ReferencedTextureGuids array is up to date.
 	if (GIsEditor)
 	{
