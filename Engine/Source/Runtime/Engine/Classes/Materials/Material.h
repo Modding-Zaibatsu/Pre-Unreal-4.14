@@ -399,6 +399,12 @@ public:
 	UPROPERTY()
 	FScalarMaterialInput Refraction;
 
+	UPROPERTY()
+	FScalarMaterialInput Anisotropic;
+
+	UPROPERTY()
+	FScalarMaterialInput LightChannel;
+
 	/** 
 	 * These inputs are evaluated in the vertex shader and allow artists to do arbitrary vertex shader operations and access them in the pixel shader.
 	 * When unconnected or hidden they default to passing through the vertex UVs.
