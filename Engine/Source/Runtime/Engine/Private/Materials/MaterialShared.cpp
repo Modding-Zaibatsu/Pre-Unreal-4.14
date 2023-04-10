@@ -2557,7 +2557,7 @@ FMaterialUpdateContext::~FMaterialUpdateContext()
 
 const TMap<EMaterialProperty, int32> CreatePropertyToIOIndexMap()
 {	
-	static_assert(MP_MAX == 28, 
+	static_assert(MP_MAX == 30, 
 		"New material properties should be added to the end of \"real\" properties in this map. Immediately before MP_MaterialAttributes . \
 		The order of properties here should match the material results pins, the inputs to MakeMaterialAttriubtes and the outputs of BreakMaterialAttriubtes.\
 		Insertions into the middle of the properties or a change in the order of properties will also require that existing data is fixed up in DoMaterialAttriubtesReorder().\
@@ -2580,15 +2580,17 @@ const TMap<EMaterialProperty, int32> CreatePropertyToIOIndexMap()
 	Ret.Add(MP_CustomData1, 13);
 	Ret.Add(MP_AmbientOcclusion, 14);
 	Ret.Add(MP_Refraction, 15);
-	Ret.Add(MP_CustomizedUVs0, 16);
-	Ret.Add(MP_CustomizedUVs1, 17);
-	Ret.Add(MP_CustomizedUVs2, 18);
-	Ret.Add(MP_CustomizedUVs3, 19);
-	Ret.Add(MP_CustomizedUVs4, 20);
-	Ret.Add(MP_CustomizedUVs5, 21);
-	Ret.Add(MP_CustomizedUVs6, 22);
-	Ret.Add(MP_CustomizedUVs7, 23);
-	Ret.Add(MP_PixelDepthOffset, 24);
+	Ret.Add(MP_Anisotropic, 16);
+	Ret.Add(MP_LightChannel, 17);
+	Ret.Add(MP_CustomizedUVs0, 18);
+	Ret.Add(MP_CustomizedUVs1, 19);
+	Ret.Add(MP_CustomizedUVs2, 20);
+	Ret.Add(MP_CustomizedUVs3, 21);
+	Ret.Add(MP_CustomizedUVs4, 22);
+	Ret.Add(MP_CustomizedUVs5, 23);
+	Ret.Add(MP_CustomizedUVs6, 24);
+	Ret.Add(MP_CustomizedUVs7, 25);
+	Ret.Add(MP_PixelDepthOffset, 26);
 	//^^^^ New properties go above here ^^^^
 	//Below here are legacy or utility properties that don't match up to material inputs.
 	Ret.Add(MP_MaterialAttributes, INDEX_NONE);

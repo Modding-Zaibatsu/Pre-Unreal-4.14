@@ -18,19 +18,13 @@ SamplerState IndirectOcclusionTextureSampler;
 float GetIndirectOcclusion(float4 ScreenPosition, FGBufferData GBufferData)
 {
 	float2 NDC = ScreenPosition.xy / ScreenPosition.w;
-	float2 ScreenUV = NDC * ResolvedView.ScreenPositionScaleBias.xy + ResolvedView.ScreenPositionScaleBias.wz;
+	float2 ScreenUV = NDC * View.ScreenPositionScaleBias.xy + View.ScreenPositionScaleBias.wz;
 	
-	float IndirectOcclusion;
 #if SUPPORTS_INDEPENDENT_SAMPLERS
-	IndirectOcclusion = Texture2DSampleLevel(IndirectOcclusionTexture, LightAttenuationTextureSampler, ScreenUV, 0).x;
+	return Texture2DSampleLevel(IndirectOcclusionTexture, LightAttenuationTextureSampler, ScreenUV, 0).x;
 #else
-	IndirectOcclusion = Texture2DSampleLevel(IndirectOcclusionTexture, IndirectOcclusionTextureSampler, ScreenUV, 0).x;
+	return Texture2DSampleLevel(IndirectOcclusionTexture, IndirectOcclusionTextureSampler, ScreenUV, 0).x;
 #endif
-
-	// Reduce self shadowing intensity on characters (reuse distance field bit, really should be HasCapsuleShadowRepresentation)
-	IndirectOcclusion = lerp(1, IndirectOcclusion, HasDistanceFieldRepresentation(GBufferData) ? View.IndirectCapsuleSelfShadowingIntensity : 1);
-
-	return IndirectOcclusion;
 }
 
 struct CulledLightsGridData
@@ -214,7 +208,7 @@ half3 GetImageBasedReflectionLighting(FMaterialPixelParameters MaterialParameter
 	// Factors derived from EnvBRDFApprox( SpecularColor, 1, 1 ) == SpecularColor * 0.4524 - 0.0024
 	float3 SpecularBounce = 0.45f * SpecularColor * IndirectIrradiance;
 	// Replace reflection captures with indirect diffuse when we're rendering to a reflection capture, to avoid a feedback loop
-	SpecularIBL.rgb = lerp(SpecularIBL.rgb, SpecularBounce, ResolvedView.RenderingReflectionCaptureMask);
+	//SpecularIBL.rgb = lerp(SpecularIBL.rgb, SpecularBounce, ResolvedView.RenderingReflectionCaptureMask);
 
 #if MATERIAL_SSR && !FORWARD_SHADING
 	if( View.CameraCut == 0 )

@@ -59,6 +59,12 @@ class UMaterialExpressionMakeMaterialAttributes : public UMaterialExpression
 	FExpressionInput Refraction;
 
 	UPROPERTY()
+	FExpressionInput Anisotropic;
+
+	UPROPERTY()
+	FExpressionInput LightChannel;
+	
+	UPROPERTY()
 	FExpressionInput CustomizedUVs[8];
 
 	UPROPERTY()

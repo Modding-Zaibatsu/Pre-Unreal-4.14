@@ -3484,7 +3484,7 @@ int32 UMaterialExpressionMakeMaterialAttributes::Compile(class FMaterialCompiler
 	int32 Ret = INDEX_NONE;
 	UMaterialExpression* Expression = NULL;
 
-	static_assert(MP_MAX == 28, 
+	static_assert(MP_MAX == 30, 
 		"New material properties should be added to the end of the inputs for this expression. \
 		The order of properties here should match the material results pins, the make material attriubtes node inputs and the mapping of IO indices to properties in GetMaterialPropertyFromInputOutputIndex().\
 		Insertions into the middle of the properties or a change in the order of properties will also require that existing data is fixed up in DoMaterialAttriubtesReorder().\
@@ -3509,6 +3509,8 @@ int32 UMaterialExpressionMakeMaterialAttributes::Compile(class FMaterialCompiler
 	case MP_CustomData1: Ret = ClearCoatRoughness.Compile(Compiler); Expression = ClearCoatRoughness.Expression; break;
 	case MP_AmbientOcclusion: Ret = AmbientOcclusion.Compile(Compiler); Expression = AmbientOcclusion.Expression; break;
 	case MP_Refraction: Ret = Refraction.Compile(Compiler); Expression = Refraction.Expression; break;
+	case MP_Anisotropic: Ret = Anisotropic.Compile(Compiler); Expression = Anisotropic.Expression; break;
+	case MP_LightChannel: Ret = LightChannel.Compile(Compiler); Expression = LightChannel.Expression; break;
 	case MP_PixelDepthOffset: Ret = PixelDepthOffset.Compile(Compiler); Expression = PixelDepthOffset.Expression; break;
 	};
 
@@ -3554,7 +3556,7 @@ UMaterialExpressionBreakMaterialAttributes::UMaterialExpressionBreakMaterialAttr
 	MenuCategories.Add(ConstructorStatics.NAME_MaterialAttributes);
 #endif
 	
-	static_assert(MP_MAX == 28, 
+	static_assert(MP_MAX == 30, 
 		"New material properties should be added to the end of the outputs for this expression. \
 		The order of properties here should match the material results pins, the make material attriubtes node inputs and the mapping of IO indices to properties in GetMaterialPropertyFromInputOutputIndex().\
 		Insertions into the middle of the properties or a change in the order of properties will also require that existing data is fixed up in DoMaterialAttriubtesReorder().\
@@ -3577,6 +3579,8 @@ UMaterialExpressionBreakMaterialAttributes::UMaterialExpressionBreakMaterialAttr
 	Outputs.Add(FExpressionOutput(TEXT("ClearCoatRoughness"), 1, 1, 1, 1, 0));
 	Outputs.Add(FExpressionOutput(TEXT("AmbientOcclusion"), 1, 1, 1, 1, 0));
 	Outputs.Add(FExpressionOutput(TEXT("Refraction"), 1, 1, 1, 1, 0));
+	Outputs.Add(FExpressionOutput(TEXT("Anisotropic"), 1, 1, 1, 1, 0));
+	Outputs.Add(FExpressionOutput(TEXT("LightChannel"), 1, 1, 1, 1, 0));
 
 	for (int32 UVIndex = 0; UVIndex <= MP_CustomizedUVs7 - MP_CustomizedUVs0; UVIndex++)
 	{

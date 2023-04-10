@@ -18,7 +18,7 @@
 // 1 : luminance specular - works well (needs 64bit SceneColor, stores luminance of specular in alpha, can be optimized further in LightAccumulator_Add() ) 
 //	   NOTE: Dependent on View.bCheckerboardSubsurfaceProfileRendering - if this is off, we fall back to mode 0
 // 2 : colored specular works well (best, requires another RT for light accumulation)
-#define SUBSURFACE_CHANNEL_MODE 1
+#define SUBSURFACE_CHANNEL_MODE 0
 
 struct FLightAccumulator
 {
@@ -51,10 +51,7 @@ void LightAccumulator_Add(inout FLightAccumulator In, float3 TotalLight, float3 
 	{
 		if (SUBSURFACE_CHANNEL_MODE == 1)
 		{
-			if (View.bCheckerboardSubsurfaceProfileRendering == 0)
-			{
-				In.ScatterableLightLuma += Luminance(ScatterableLight * CommonMultiplier);
-			}
+			In.ScatterableLightLuma += Luminance(ScatterableLight * CommonMultiplier);
 		}
 		else if (SUBSURFACE_CHANNEL_MODE == 2)
 		{
@@ -82,11 +79,7 @@ float4 LightAccumulator_GetResult(FLightAccumulator In)
 
 		if (SUBSURFACE_CHANNEL_MODE == 1 )
 		{
-			if (View.bCheckerboardSubsurfaceProfileRendering == 0)
-			{
-				// RGB accumulated RGB HDR color, A: specular luminance for screenspace subsurface scattering
-				Ret.a = In.ScatterableLightLuma;
-			}
+			Ret.a = In.ScatterableLightLuma;
 		}
 		else if (SUBSURFACE_CHANNEL_MODE == 2)
 		{

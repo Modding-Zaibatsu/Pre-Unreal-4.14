@@ -962,7 +962,7 @@ void FPixelShaderInOut_MainPS(
 			DiffuseColor = DiffuseColor * VertexFog.a + VertexFog.rgb;
 
 			if (GBuffer.ShadingModelID == SHADINGMODELID_SUBSURFACE_PROFILE && 
-                View.bSubsurfacePostprocessEnabled > 0 && View.bCheckerboardSubsurfaceProfileRendering > 0 )
+                true && true )
 			{
 				// Adjust for checkerboard. only apply non-diffuse lighting (including emissive) 
 				// to the specular component, otherwise lighting is applied twice

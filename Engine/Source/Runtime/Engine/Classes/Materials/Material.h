@@ -360,9 +360,15 @@ private:
 	TEnumAsByte<enum EMaterialShadingModel> ShadingModel;
 public:
 
+	UPROPERTY()
+	uint8 UnknownData00[0x3];
+
 	/** If BlendMode is BLEND_Masked, the surface is not rendered where OpacityMask < OpacityMaskClipValue. */
 	UPROPERTY(EditAnywhere, Category=Material, AdvancedDisplay)
 	float OpacityMaskClipValue;
+
+	UPROPERTY()
+	int32 UnknownData01;
 
 	/** Adds to world position in the vertex shader. */
 	UPROPERTY()
@@ -453,6 +459,9 @@ public:
 	UPROPERTY(EditAnywhere, Category=Material, AdvancedDisplay)
 	uint32 bAllowNegativeEmissiveColor:1;
 
+	UPROPERTY()
+	uint8 UnknownData02[0x3];
+	
 	/** Number of customized UV inputs to display.  Unconnected customized UV inputs will just pass through the vertex UVs. */
 	UPROPERTY(EditAnywhere, Category=Material, AdvancedDisplay, meta=(ClampMin=0))
 	int32 NumCustomizedUVs;
@@ -460,6 +469,9 @@ public:
 	/** Sets the lighting mode that will be used on this material if it is translucent. */
 	UPROPERTY(EditAnywhere, Category=Translucency, meta=(DisplayName = "Lighting Mode"))
 	TEnumAsByte<enum ETranslucencyLightingMode> TranslucencyLightingMode;
+
+	UPROPERTY()
+	uint8 UnknownData03[0x3];
 
 	/** 
 	 * Useful for artificially increasing the influence of the normal on the lighting result for translucency.
@@ -664,6 +676,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = ForwardShading, meta = (DisplayName = "Planar Reflections"))
 	uint32 bUsePlanarForwardReflections : 1;
 
+	UPROPERTY()
+	uint8 UnknownData04[0x1];
+
 	/* Reduce roughness based on screen space normal changes. */
 	//UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=ForwardShading)
 	uint32 bNormalCurvatureToRoughness : 1;
@@ -671,6 +686,9 @@ public:
 	/** The type of tessellation to apply to this object.  Note D3D11 required for anything except MTM_NoTessellation. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Tessellation)
 	TEnumAsByte<enum EMaterialTessellationMode> D3D11TessellationMode;
+
+	UPROPERTY()
+	uint8 UnknownData05[0x3];
 
 	/** Prevents cracks in the surface of the mesh when using tessellation. */
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Tessellation, meta=(DisplayName = "Crack Free Displacement"))
@@ -680,6 +698,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category=Tessellation, meta=(DisplayName = "Adaptive Tessellation"))
 	uint32 bEnableAdaptiveTessellation:1;
 
+	UPROPERTY()
+	uint8 UnknownData06[0x3];
+	
 	UPROPERTY(EditAnywhere, Category=Tessellation)
 	float MaxDisplacement;
 
@@ -692,6 +713,9 @@ public:
 	uint32 bOutputVelocityOnBasePass:1;
 
 	UPROPERTY()
+	uint8 UnknownData07[0x3];
+
+	UPROPERTY()
 	int32 EditorX;
 
 	UPROPERTY()
@@ -702,6 +726,9 @@ public:
 
 	UPROPERTY()
 	int32 EditorYaw;
+
+	UPROPERTY()
+	uint8 UnknownData08[0x34];
 
 	/** Array of material expressions, excluding Comments.  Used by the material editor. */
 	UPROPERTY()
@@ -749,6 +776,9 @@ public:
 	UPROPERTY(transient, duplicatetransient)
 	uint32 bIsMaterialEditorStatsMaterial:1;
 
+	UPROPERTY()
+	uint8 UnknownData09[0x3];
+
 	/** true if we have printed a warning about material usage for a given usage flag. */
 	UPROPERTY(transient, duplicatetransient)
 	uint32 UsageFlagWarnings;
@@ -757,6 +787,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=PostProcessMaterial, meta=(DisplayName = "Blendable Location"))
 	TEnumAsByte<enum EBlendableLocation> BlendableLocation;
 
+	UPROPERTY()
+	uint8 UnknownData10[0x3];
+
 	/** If multiple nodes with the same  type are inserted at the same point, this defined order and if they get combined, only used if domain is PostProcess */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category=PostProcessMaterial, meta=(DisplayName = "Blendable Priority"))
 	int32 BlendablePriority;
@@ -764,6 +797,9 @@ public:
 	/** Controls how the Refraction input is interpreted and how the refraction offset into scene color is computed for this material. */
 	UPROPERTY(EditAnywhere, Category=Refraction)
 	TEnumAsByte<enum ERefractionMode> RefractionMode;
+
+	UPROPERTY()
+	uint8 UnknownData11[0x3];
 
 	/** This is the refraction depth bias, larger values offset distortion to prevent closer objects from rendering into the distorted surface at acute viewing angles but increases the disconnect between surface and where the refraction starts. */
 	UPROPERTY(EditAnywhere, Category=Refraction)
@@ -778,6 +814,9 @@ public:
 	UPROPERTY()
 	FGuid StateId;
 
+	UPROPERTY()
+	uint8 UnknownData12[0xE0];
+	
 	/** 
 	 * FMaterialRenderProxy derivatives that represent this material to the renderer, when the renderer needs to fetch parameter values. 
 	 * Second instance is used when selected, third when hovered.

@@ -47,7 +47,9 @@ void UMaterialGraph::RebuildGraph()
 		MaterialInputs.Add( FMaterialInputInfo( GetCustomDataPinName(1), MP_CustomData1, GetCustomDataPinName( 1 ) ) );
 		MaterialInputs.Add( FMaterialInputInfo( LOCTEXT("AmbientOcclusion", "Ambient Occlusion"), MP_AmbientOcclusion, LOCTEXT( "AmbientOcclusionToolTip", "Simulate the self-shadowing that happens within crevices of a surface" ) ) );
 		MaterialInputs.Add( FMaterialInputInfo( LOCTEXT("Refraction", "Refraction"), MP_Refraction, LOCTEXT( "RefractionToolTip", "Takes in a texture or value that simulates the index of refraction of the surface" ) ) );
-
+		MaterialInputs.Add ( FMaterialInputInfo( LOCTEXT("Anisotropic", "Anisotropic"), MP_Anisotropic, LOCTEXT("Anisotropic", "Anisotropic") ) );
+		MaterialInputs.Add ( FMaterialInputInfo( LOCTEXT("LightChannel", "LightChannel"), MP_LightChannel, LOCTEXT("LightChannel", "LightChannel") ) );
+		
 		for (int32 UVIndex = 0; UVIndex < ARRAY_COUNT(Material->CustomizedUVs); UVIndex++)
 		{
 			//@todo - localize

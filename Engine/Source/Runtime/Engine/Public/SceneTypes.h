@@ -145,6 +145,8 @@ enum EMaterialProperty
 	MP_CustomData1,
 	MP_AmbientOcclusion,
 	MP_Refraction,
+	MP_Anisotropic,
+	MP_LightChannel,
 	MP_CustomizedUVs0,
 	MP_CustomizedUVs1,
 	MP_CustomizedUVs2,

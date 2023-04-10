@@ -2331,7 +2331,7 @@ void UMaterial::Serialize(FArchive& Ar)
 	}
 #endif // #if WITH_EDITOR
 
-	static_assert(MP_MAX == 28, "New material properties must have DoMaterialAttributesReorder called on them to ensure that any future reordering of property pins is correctly applied.");
+	static_assert(MP_MAX == 30, "New material properties must have DoMaterialAttributesReorder called on them to ensure that any future reordering of property pins is correctly applied.");
 
 	if (Ar.UE4Ver() < VER_UE4_MATERIAL_MASKED_BLENDMODE_TIDY)
 	{
@@ -2529,6 +2529,8 @@ void UMaterial::PostLoad()
 	DoMaterialAttributeReorder(&ClearCoatRoughness, UE4Ver);
 	DoMaterialAttributeReorder(&AmbientOcclusion, UE4Ver);
 	DoMaterialAttributeReorder(&Refraction, UE4Ver);
+	DoMaterialAttributeReorder(&Anisotropic, UE4Ver);
+	DoMaterialAttributeReorder(&LightChannel, UE4Ver);
 	DoMaterialAttributeReorder(&CustomizedUVs[0], UE4Ver);
 	DoMaterialAttributeReorder(&CustomizedUVs[1], UE4Ver);
 	DoMaterialAttributeReorder(&CustomizedUVs[2], UE4Ver);
@@ -3756,6 +3758,8 @@ FExpressionInput* UMaterial::GetExpressionInputForProperty(EMaterialProperty InP
 		case MP_CustomData1:			return &ClearCoatRoughness;
 		case MP_AmbientOcclusion:		return &AmbientOcclusion;
 		case MP_Refraction:				return &Refraction;
+		case MP_Anisotropic:			return &Anisotropic;
+		case MP_LightChannel:			return &LightChannel;
 		case MP_MaterialAttributes:		return &MaterialAttributes;
 		case MP_PixelDepthOffset:		return &PixelDepthOffset;
 	}

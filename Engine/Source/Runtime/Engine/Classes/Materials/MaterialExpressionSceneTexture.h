@@ -59,6 +59,8 @@ enum ESceneTextureId
 	PPI_AmbientOcclusion UMETA(DisplayName="Ambient Occlusion"),
 	/** Scene stencil, contains CustomStencil mesh property of the opaque objects rendered with CustomDepth */
 	PPI_CustomStencil UMETA(DisplayName="CustomStencil"),
+	PPI_LightChannel UMETA(DisplayName="LightChannel"),
+	PPI_PartsMask UMETA(DisplayName="PPI_PartsMask"),
 	/** Material base, RGB color (GBuffer) */
 	PPI_StoredBaseColor UMETA(DisplayName="BaseColor (as stored in GBuffer)"),
 	/** Material specular, single channel (GBuffer) */

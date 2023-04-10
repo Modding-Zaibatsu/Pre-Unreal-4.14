@@ -489,9 +489,9 @@ void AdjustBaseColorAndSpecularColorForSubsurfaceProfileLighting(inout float3 Ba
 #if SUBSURFACE_CHANNEL_MODE == 0
 	// If SUBSURFACE_CHANNEL_MODE is 0, we can't support full-resolution lighting, so we 
 	// ignore View.bCheckerboardSubsurfaceProfileRendering
-	const bool bCheckerboardRequired = View.bSubsurfacePostprocessEnabled > 0;
+	const bool bCheckerboardRequired = false;
 #else
-	const bool bCheckerboardRequired = View.bSubsurfacePostprocessEnabled > 0 && View.bCheckerboardSubsurfaceProfileRendering > 0;
+	const bool bCheckerboardRequired = View.bSubsurfacePostprocessEnabled > 0 && true;
 	BaseColor = View.bSubsurfacePostprocessEnabled ? float3(1, 1, 1) : BaseColor;
 #endif
 	if (bCheckerboardRequired)

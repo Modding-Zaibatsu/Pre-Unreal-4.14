@@ -2109,8 +2109,8 @@ void FSceneView::SetupCommonViewUniformBufferParameters(
 	ViewUniformShaderParameters.ViewForward = EffectiveTranslatedViewMatrix.GetColumn(2);
 	ViewUniformShaderParameters.ViewUp = EffectiveTranslatedViewMatrix.GetColumn(1);
 	ViewUniformShaderParameters.ViewRight = EffectiveTranslatedViewMatrix.GetColumn(0);
-	ViewUniformShaderParameters.HMDViewNoRollUp = ViewMatrices.HMDViewMatrixNoRoll.GetColumn(1);
-	ViewUniformShaderParameters.HMDViewNoRollRight = ViewMatrices.HMDViewMatrixNoRoll.GetColumn(0);
+	//ViewUniformShaderParameters.HMDViewNoRollUp = ViewMatrices.HMDViewMatrixNoRoll.GetColumn(1);
+	//ViewUniformShaderParameters.HMDViewNoRollRight = ViewMatrices.HMDViewMatrixNoRoll.GetColumn(0);
 	ViewUniformShaderParameters.InvDeviceZToWorldZTransform = InvDeviceZToWorldZTransform;
 	ViewUniformShaderParameters.WorldViewOrigin = EffectiveViewToTranslatedWorld.TransformPosition(FVector(0)) - ViewMatrices.PreViewTranslation;
 	ViewUniformShaderParameters.WorldCameraOrigin = ViewMatrices.ViewOrigin;
@@ -2151,7 +2151,7 @@ void FSceneView::SetupCommonViewUniformBufferParameters(
 	ViewUniformShaderParameters.CullingSign = bReverseCulling ? -1.0f : 1.0f;
 	ViewUniformShaderParameters.NearPlane = GNearClippingPlane;
 
-	ViewUniformShaderParameters.bCheckerboardSubsurfaceProfileRendering = 0;
+	//ViewUniformShaderParameters.bCheckerboardSubsurfaceProfileRendering = 0;
 
 	ViewUniformShaderParameters.ScreenToWorld = FMatrix(
 		FPlane(1, 0, 0, 0),
